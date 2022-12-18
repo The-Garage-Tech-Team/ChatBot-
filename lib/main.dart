@@ -1,12 +1,9 @@
-import 'package:chatbot_template/view/screens/dashborad_screen.dart';
-import 'package:chatbot_template/logic/binding/initial_binding.dart';
-import 'package:chatbot_template/view/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'route/routes.dart';
 import 'firebase_options.dart';
+import 'route/routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

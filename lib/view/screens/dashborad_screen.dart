@@ -1,7 +1,5 @@
-import 'package:chatbot_template/view/widgets/chat%20widgets/admin_chat_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'chat_screen.dart';
 import '../../logic/controller/dashboard_controller.dart';
 import '../widgets/admin_widget/appbar_widget.dart';
 import '../widgets/admin_widget/chat-list.dart';
@@ -45,22 +43,3 @@ class DashboardScreen extends StatelessWidget {
 }
 
 // my layout design to dashboard! didn't workout. 
-
-// Scaffold(
-//         body: Row(
-//       children: [
-//         SideBarWidget(),
-//         Column(
-//           children: [
-//             AppBarWidget(),
-//             Row(
-//               children: const [
-//                 ChatList(),
-//                 AdminChat(),
-//               ],
-//             )
-//           ],
-//         ),
-//         const UserProfile(),
-//       ],
-//     ));

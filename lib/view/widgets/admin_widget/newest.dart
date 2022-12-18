@@ -1,13 +1,15 @@
 import 'package:badges/badges.dart';
 import 'package:chatbot_template/model/extensions.dart';
-import 'package:chatbot_template/view/widgets/admin_widget/user-profile.dart';
 import 'package:chatbot_template/view/widgets/chat%20widgets/admin_chat_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../logic/controller/chat_controller_1.dart';
 import '../../../logic/controller/dashboard_controller.dart';
 
+
 class NewestChat extends StatelessWidget {
+  final chatController = Get.put(ChatContoller1());
   NewestChat({Key? key}) : super(key: key);
 
   String date = DateTime.now().toString().changeDateFormat();
@@ -18,7 +20,9 @@ class NewestChat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-        stream: db.collection('users').snapshots(),
+        stream: db
+        .collection('newChatbot')
+        .snapshots(),
         builder: (context, snapshot) {
           return !snapshot.hasData
               ? Center(child: CircularProgressIndicator())
@@ -31,12 +35,15 @@ class NewestChat extends StatelessWidget {
                           children: [
                             InkWell(
                               onTap: () {
-                                // print(snapshot.data!.docs[index].id);
+                                controller.selectedUserID =
+                                    snapshot.data!.docs[index].id;
+                                print(controller.selectedUserID);
+                                // controller.test(snapshot, index);
                                 db
-                                    .collection('users')
+                                    .collection('newChatbot')
                                     .doc(snapshot.data!.docs[index].id)
                                     .update({'status': 'isOpened'});
-                                Get.to(() => AdminChatWidget(
+                                Get.to(() => AdminChatWidget(selectedUserID:  controller.selectedUserID,
                                     docID: snapshot.data!.docs[index].id));
                               },
                               child: Card(
@@ -64,8 +71,7 @@ class NewestChat extends StatelessWidget {
                                                 const EdgeInsets.only(left: 5),
                                             child: ListTile(
                                               title: Text(
-                                                snapshot.data!
-                                                    .docs[index]['user_email']
+                                                snapshot.data!.docs[index].data()['user_email']
                                                     .toString(),
                                                 style: TextStyle(
                                                   fontSize: 14,
@@ -81,8 +87,8 @@ class NewestChat extends StatelessWidget {
                                               subtitle: Text(controller
                                                   .timestampToDesiredFormat(
                                                       snapshot.data!.docs[index]
-                                                          [
-                                                          'last_messages_time'])),
+                                                              .data()[
+                                                          'last_message_time'])),
                                               leading: const Icon(Icons.face),
                                               trailing: Badge(
                                                 elevation: 0,

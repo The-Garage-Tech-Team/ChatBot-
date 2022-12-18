@@ -1,11 +1,12 @@
 import 'package:chatbot_template/constants/constants.dart';
 import 'package:chatbot_template/logic/controller/chat_controller.dart';
 import 'package:chatbot_template/logic/controller/login_controller.dart';
-import 'package:chatbot_template/view/screens/chat_screen.dart';
 import 'package:chatbot_template/view/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:get/get.dart';
+
+import 'chat_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
   SettingsScreen({super.key});
@@ -65,7 +66,7 @@ class SettingsScreen extends StatelessWidget {
                     child: GestureDetector(
                       onTap: () {
                         // chatController.getChatID(chatController.currentUserID);
-                        Get.to(() => ChatScreen());
+                        Get.to(() => ChatScreen(selectedUserID: chatController.currentUserID,));
                       },
                       child: ListTile(
                         leading: Image.asset('assets/images/contact.png'),
