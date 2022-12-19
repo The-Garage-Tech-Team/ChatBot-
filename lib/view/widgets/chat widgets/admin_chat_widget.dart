@@ -7,6 +7,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'package:responsive_sizer/responsive_sizer.dart';
+
 class AdminChatWidget extends StatelessWidget {
   final String docID;
   final chatController = Get.put(ChatContoller1());
@@ -18,8 +20,8 @@ class AdminChatWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 300,
-      height: 500,
+      width: Get.width - 1200,
+      height: Get.width - 980,
       child: Material(
         child: Column(children: [
           Container(

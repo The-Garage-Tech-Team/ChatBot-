@@ -2,6 +2,9 @@ import 'package:chatbot_template/view/widgets/admin_widget/newest.dart';
 import 'package:chatbot_template/view/widgets/admin_widget/oldest.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
+import 'package:get/get.dart';
+
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ChatList extends StatelessWidget {
   const ChatList({Key? key}) : super(key: key);
@@ -10,11 +13,11 @@ class ChatList extends StatelessWidget {
   Widget build(BuildContext context) => DefaultTabController(
         length: 2,
         child: SizedBox(
-          width: 1260,
+          width: Get.width-1000,
           child: Expanded(
             child: Padding(
               padding: const EdgeInsets.only(
-                  left: 284, top: 246, right: 682, bottom: 17),
+                  left: 284, top: 246, right: 0, bottom: 17),
               child: Card(
                 child: Scaffold(
                   backgroundColor: Colors.white,
