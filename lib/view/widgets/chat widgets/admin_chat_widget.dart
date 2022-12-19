@@ -1,63 +1,76 @@
-import 'package:chatbot_template/logic/controller/new_chat_controller.dart';
+import 'package:chatbot_template/view/widgets/chat%20widgets/admin_response.dart';
 import 'package:chatbot_template/view/widgets/chat%20widgets/input_send_msg.dart';
 import 'package:chatbot_template/view/widgets/chat%20widgets/mark_close_button.dart';
 import 'package:chatbot_template/view/widgets/chat%20widgets/user_response.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
+
+import '../../../logic/controller/chat_controller_1.dart';
 
 class AdminChatWidget extends StatelessWidget {
   final String docID;
-  final chatController = Get.put(NewChatContoller());
+  final String selectedUserID;
   //var userUid = FirebaseAuth.instance.currentUser!.uid;
 
-  AdminChatWidget({super.key, required this.docID});
+  AdminChatWidget(
+      {super.key, required this.docID, required this.selectedUserID});
+
+  final chatController = Get.put(ChatContoller1());
+
   @override
   Widget build(BuildContext context) {
     return Material(
       child: Column(children: [
         Container(
           alignment: Alignment.centerRight,
-          color: Color.fromRGBO(54, 55, 64, 1),
+          color: const Color.fromRGBO(54, 55, 64, 1),
           height: 40,
           child: MarkClosedButton(),
         ),
         Expanded(
             child: StreamBuilder<QuerySnapshot>(
-                stream: FirebaseFirestore.instance
-                    .collection('users')
-                    .doc("vJI1WLlXPucQmbvcpl5zfsAa5W33")
-                    .collection('messages')
-                    .doc(docID)
-                    .collection('chats')
-                    .orderBy('time', descending: true)
-                    .snapshots(),
+                stream: chatController.getMessageByStream(docID),
                 builder: (context, snapshot) {
-                  print(snapshot.data!.docs.length);
                   List<Widget> chatMessages = [];
-                  if (snapshot.hasData) {
+                  if (!snapshot.hasData) {
+                    return CircularProgressIndicator();
+                  } else if (snapshot.hasData) {
                     if (snapshot.data!.docs.length < 1) {
                       return Container();
                     }
                     return ListView.builder(
                       reverse: true,
-                      physics: BouncingScrollPhysics(),
+                      physics: const BouncingScrollPhysics(),
                       itemCount: snapshot.data!.docs.length,
                       itemBuilder: (context, index) {
-                        return UserResponse(
-                            text: snapshot.data!.docs[index]['message']
-                                .toString(),
-                            timeSent: chatController.timestampToDesiredFormat(
-                                snapshot.data!.docs[index]['time']));
+ 
+                        final msgWidget = chatController.isCurrentUser(
+                                snapshot.data!.docs[index]['senderID'])
+                            ? UserResponse(
+                                text: snapshot.data!.docs[index]['message'],
+                                timeSent:
+                                    chatController.timestampToDesiredFormat(
+                                        snapshot.data!.docs[index]['time']),
+                                widgetColor:
+                                    const Color.fromRGBO(54, 55, 64, 1),
+                              )
+                            : AdminResponse(
+                                text: snapshot.data!.docs[index]['message'],
+                                timeSent:
+                                    chatController.timestampToDesiredFormat(
+                                        snapshot.data!.docs[index]['time']),
+                              );
+                        chatMessages.add(msgWidget);
+                        return msgWidget;
                       },
                     );
                   }
                   return Container();
                 })),
-        //this causing the error when calling InputMsg()
-        InputMsg()
+        InputMsg(
+          selectedUserID: selectedUserID,
+        )
       ]),
     );
   }

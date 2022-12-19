@@ -3,9 +3,8 @@ import 'package:chatbot_template/model/extensions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../chat widgets/admin_chat_widget.dart';
 import '../../../logic/controller/dashboard_controller.dart';
+import '../../../view/widgets/chat widgets/admin_chat_widget.dart';
 
 class OldestChat extends StatelessWidget {
   OldestChat({Key? key}) : super(key: key);
@@ -36,6 +35,7 @@ class OldestChat extends StatelessWidget {
                                     .doc(snapshot.data!.docs[index].id)
                                     .update({'status': 'isOpened'});
                                 Get.to(() => AdminChatWidget(
+                                    selectedUserID: controller.selectedUserID,
                                     docID: snapshot.data!.docs[index].id));
                               },
                               child: Card(
