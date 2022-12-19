@@ -45,7 +45,20 @@ class ChatScreen extends StatelessWidget {
                 builder: (context, snapshot) {
                   List<Widget> chatMessages = [];
                   if (!snapshot.hasData) {
-                    return CircularProgressIndicator();
+                    return Center(
+                      child: SizedBox(
+                        height: 15.0,
+                        width: 15.0,
+                        child: Transform.scale(
+                          scale: 2,
+                          child: const CircularProgressIndicator(
+                            strokeWidth: 2,
+                            valueColor:
+                                AlwaysStoppedAnimation<Color>(Colors.grey),
+                          ),
+                        ),
+                      ),
+                    );
                   }
                   if (snapshot.hasData) {
                     if (snapshot.data!.docs.length < 1) {

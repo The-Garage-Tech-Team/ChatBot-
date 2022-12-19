@@ -24,7 +24,7 @@ class UserProfile extends StatelessWidget {
                         ClipRRect(
                           borderRadius: BorderRadius.circular(50),
                           child: Image.asset(
-                            'images/userImage.png',
+                            'assets/images/userImage.png',
                             width: 80,
                             height: 82.22,
                             fit: BoxFit.fill,
