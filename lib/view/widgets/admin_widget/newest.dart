@@ -7,22 +7,18 @@ import 'package:get/get.dart';
 import '../../../logic/controller/chat_controller_1.dart';
 import '../../../logic/controller/dashboard_controller.dart';
 
-
 class NewestChat extends StatelessWidget {
   final chatController = Get.put(ChatContoller1());
   NewestChat({Key? key}) : super(key: key);
 
   String date = DateTime.now().toString().changeDateFormat();
   final controller = Get.find<DashboardController>();
-
   final db = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-        stream: db
-        .collection('newChatbot')
-        .snapshots(),
+        stream: db.collection('newChatbot').snapshots(),
         builder: (context, snapshot) {
           return !snapshot.hasData
               ? Center(child: CircularProgressIndicator())
@@ -43,7 +39,10 @@ class NewestChat extends StatelessWidget {
                                     .collection('newChatbot')
                                     .doc(snapshot.data!.docs[index].id)
                                     .update({'status': 'isOpened'});
-                                Get.to(() => AdminChatWidget(selectedUserID:  controller.selectedUserID,
+                                chatController
+                                    .updateDocID(snapshot.data!.docs[index].id);
+                                Get.to(() => AdminChatWidget(
+                                    selectedUserID: controller.selectedUserID,
                                     docID: snapshot.data!.docs[index].id));
                               },
                               child: Card(
@@ -71,7 +70,8 @@ class NewestChat extends StatelessWidget {
                                                 const EdgeInsets.only(left: 5),
                                             child: ListTile(
                                               title: Text(
-                                                snapshot.data!.docs[index].data()['user_email']
+                                                snapshot.data!.docs[index]
+                                                    .data()['user_email']
                                                     .toString(),
                                                 style: TextStyle(
                                                   fontSize: 14,

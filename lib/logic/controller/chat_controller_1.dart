@@ -11,6 +11,12 @@ class ChatContoller1 extends GetxController {
   final currentUserEmail = FirebaseAuth.instance.currentUser!.email;
   final currentUserID = FirebaseAuth.instance.currentUser!.uid;
   final adminUid = 'vJI1WLlXPucQmbvcpl5zfsAa5W33';
+  var id = '';
+  void updateDocID(docId) {
+    id = docId;
+    print(id);
+    update();
+  }
 
   // Store user message to Firestore
   void storeMessageUser(String msg) async {
@@ -31,14 +37,14 @@ class ChatContoller1 extends GetxController {
 
   // Store admin message to Firestore
   void storeMessageAdmin(String selectedUserID, String msg) async {
-   var fireData = await firestore.collection('newChatbot').doc(selectedUserID);
-    
-      fireData.collection('messages').doc().set({
-        'message': msg,
-        'senderID': adminUid,
-        'receiverID': selectedUserID,
-        'time': FieldValue.serverTimestamp(),
-      });
+    var fireData = await firestore.collection('newChatbot').doc(selectedUserID);
+
+    fireData.collection('messages').doc().set({
+      'message': msg,
+      'senderID': adminUid,
+      'receiverID': selectedUserID,
+      'time': FieldValue.serverTimestamp(),
+    });
   }
 
   // Fetching message List from Firestore
@@ -47,9 +53,7 @@ class ChatContoller1 extends GetxController {
         .collection('newChatbot')
         .orderBy('last_message_time', descending: true)
         .snapshots();
-
   }
-
 
   // Fetching message List from Firestore
   Stream<QuerySnapshot<Object?>> getMessageByStream(String docID) {

@@ -10,11 +10,14 @@ import '../../../logic/controller/chat_controller_1.dart';
 
 class AdminChatWidget extends StatelessWidget {
   final String docID;
-  final chatController = Get.put(ChatContoller1());
   final String selectedUserID;
   //var userUid = FirebaseAuth.instance.currentUser!.uid;
 
-  AdminChatWidget({super.key, required this.docID, required this.selectedUserID});
+  AdminChatWidget(
+      {super.key, required this.docID, required this.selectedUserID});
+
+  final chatController = Get.put(ChatContoller1());
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -23,17 +26,16 @@ class AdminChatWidget extends StatelessWidget {
           alignment: Alignment.centerRight,
           color: const Color.fromRGBO(54, 55, 64, 1),
           height: 40,
-          child: const MarkClosedButton(),
+          child: MarkClosedButton(),
         ),
         Expanded(
             child: StreamBuilder<QuerySnapshot>(
                 stream: chatController.getMessageByStream(docID),
                 builder: (context, snapshot) {
                   List<Widget> chatMessages = [];
-                    if (!snapshot.hasData) {
+                  if (!snapshot.hasData) {
                     return CircularProgressIndicator();
-                  }
-                 else if (snapshot.hasData) {
+                  } else if (snapshot.hasData) {
                     if (snapshot.data!.docs.length < 1) {
                       return Container();
                     }
@@ -42,6 +44,7 @@ class AdminChatWidget extends StatelessWidget {
                       physics: const BouncingScrollPhysics(),
                       itemCount: snapshot.data!.docs.length,
                       itemBuilder: (context, index) {
+ 
                         final msgWidget = chatController.isCurrentUser(
                                 snapshot.data!.docs[index]['senderID'])
                             ? UserResponse(
@@ -60,14 +63,14 @@ class AdminChatWidget extends StatelessWidget {
                               );
                         chatMessages.add(msgWidget);
                         return msgWidget;
-
-                        
                       },
                     );
                   }
                   return Container();
                 })),
-        InputMsg(selectedUserID: selectedUserID,)
+        InputMsg(
+          selectedUserID: selectedUserID,
+        )
       ]),
     );
   }
