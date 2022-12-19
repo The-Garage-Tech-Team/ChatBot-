@@ -45,7 +45,7 @@ class LoginScreen extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Image.asset('images/google.png'),
+                              Image.asset('assets/images/google.png'),
                               const SizedBox(width: 8),
                               const Text(
                                 'with Google',
@@ -68,7 +68,7 @@ class LoginScreen extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Image.asset('images/google.png'),
+                              Image.asset('assets/images/apple.png'),
                               const SizedBox(width: 8),
                               const Text(
                                 'with Apple',
