@@ -18,15 +18,20 @@ class AdminChatWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(color: Colors.white),
-      width: 1200,
-      height: 980,
+      color: Colors.white,
+      width: Get.width * 0.40,
+      height: Get.height * 0.75,
+      constraints: const BoxConstraints(
+        maxHeight:  1200,
+        maxWidth: 900,
+      ),
       child: Material(
+        color: Colors.white,
         child: Column(children: [
           Container(
             alignment: Alignment.centerRight,
             color: const Color.fromRGBO(54, 55, 64, 1),
-            height: 40,
+            // height: 40,
             child: MarkClosedButton(onPressedFunction: () {  },),
           ),
           Expanded(
@@ -37,14 +42,14 @@ class AdminChatWidget extends StatelessWidget {
                     if (!snapshot.hasData) {
                       return Center(
                           child: SizedBox(
-                        height: 15.0,
-                        width: 15.0,
-                        child: Transform.scale(
+                        //height: 15.0,
+                        //width: 15.0,
+                             child: Transform.scale(
                           scale: 2,
-                          child: const CircularProgressIndicator(
+                               child: const CircularProgressIndicator(
                             strokeWidth: 2,
                             valueColor:
-                                AlwaysStoppedAnimation<Color>(Colors.grey),
+                                AlwaysStoppedAnimation<Color>(Colors.white),
                           ),
                         ),
                       ));
@@ -52,8 +57,8 @@ class AdminChatWidget extends StatelessWidget {
                       if (snapshot.data!.docs.length < 1) {
                         return Container(
                           decoration: BoxDecoration(color: Colors.white),
-                          width:  1200,
-                          height: 980,
+                         // width:  1200,
+                          //height: 980,
                         );
                       }
                       return ListView.builder(

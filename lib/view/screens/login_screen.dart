@@ -38,9 +38,9 @@ class LoginScreen extends StatelessWidget {
                       children: [
                         Container(
                           constraints: const BoxConstraints( 
-      minHeight:  52,
-      minWidth: 133,
-   ), 
+                          minHeight:  52,
+                          minWidth: 133,
+                           ),
                           width: 15.w,
                           height: 5.h,
                           decoration: BoxDecoration(
