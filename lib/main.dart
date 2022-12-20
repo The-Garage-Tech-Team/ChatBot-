@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'firebase_options.dart';
 import 'route/routes.dart';
 
@@ -26,7 +28,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: AppRoutes.login,
+      // This will fix reload page only in the admin side (dashboard), need to fix it also in normal user side.
+      initialRoute: FirebaseAuth.instance.currentUser != null ||
+              GetStorage().read<bool>('auth') == true
+          ? AppRoutes.dashboard
+          : AppRoutes.login,
+      // initialRoute: AppRoutes.login,
       getPages: AppRoutes.routes,
     );
   }

@@ -10,6 +10,11 @@ class DashboardController extends GetxController {
   String selected = '';
   var selectedUserID = '';
   final db = FirebaseFirestore.instance;
+  bool isPressed = false;
+
+
+  var oldCounter = 0.obs;
+  var newCounter = 0.obs;
 
   void checkSelected(String title) {
     selected = title;
@@ -80,5 +85,10 @@ class DashboardController extends GetxController {
     //     .doc()
 // chats
 // senderID
+  }
+
+  void isPressedFun() {
+    isPressed = true;
+    update();
   }
 }
