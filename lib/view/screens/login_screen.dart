@@ -37,10 +37,10 @@ class LoginScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          constraints: const BoxConstraints( 
-      minHeight:  52,
-      minWidth: 133,
-   ), 
+                          constraints: const BoxConstraints(
+                            minHeight: 52,
+                            minWidth: 133,
+                          ),
                           width: 15.w,
                           height: 5.h,
                           decoration: BoxDecoration(
@@ -64,7 +64,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                         const SizedBox(width: 16),
                         Container(
-                              constraints: const BoxConstraints(
+                          constraints: const BoxConstraints(
                             minHeight: 52,
                             minWidth: 133,
                           ),
@@ -101,155 +101,178 @@ class LoginScreen extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 50, right: 50),
                       child: Form(
                         key: _formKey,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              'User Name',
-                              style: TextStyle(color: kGreyColor),
-                            ),
-                            const SizedBox(height: 10),
-                            TextFormField(
-                              controller: _userController,
-                              validator: (value) {
-                                bool _isEmailValid = RegExp(
-                                        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                    .hasMatch(value!);
-                                if (!_isEmailValid) {
-                                  return 'Invalid email.';
-                                }
-                                return null;
-                              },
-                              decoration: InputDecoration(
-                                hintText: 'Enter your name',
-                                prefixIcon: Image.asset('assets/images/user.png'),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: const BorderSide(
-                                    color: kGreyColor,
-                                    width: 2,
-                                  ),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: const BorderSide(
-                                    color: kGreyColor,
-                                    width: 2,
-                                  ),
-                                ),
+                        child: Container(
+                           constraints: const BoxConstraints(
+                            minHeight: 52,
+                            minWidth: 150*2,
+                          ),
+                          width: 40.w,
+                          height: 35.h,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                'User Name',
+                                style: TextStyle(color: kGreyColor),
                               ),
-                            ),
-                            const SizedBox(height: 10),
-                            const Text(
-                              'Password',
-                              style: TextStyle(color: kGreyColor),
-                            ),
-                            const SizedBox(height: 10),
-                            TextFormField(
-                              controller: _passwordController,
-                              validator: (value) {
-                                if (value.toString().length < 6) {
-                                  return 'Password should be longer or equal to 6 characters.';
-                                }
-                                return null;
-                              },
-                              obscureText: true,
-                              decoration: InputDecoration(
-                                hintText: 'Enter your password',
-                                prefixIcon: Image.asset('assets/images/lock.png'),
-                                suffixIcon: const Icon(
-                                  Icons.visibility_off,
-                                  color: kGreyColor,
-                                ),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: const BorderSide(
-                                    color: kGreyColor,
-                                    width: 2,
+                              const SizedBox(height: 10),
+                              TextFormField(
+                                controller: _userController,
+                                validator: (value) {
+                                  bool _isEmailValid = RegExp(
+                                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                      .hasMatch(value!);
+                                  if (!_isEmailValid) {
+                                    return 'Invalid email.';
+                                  }
+                                  return null;
+                                },
+                                decoration: InputDecoration(
+                                  hintText: 'Enter your name',
+                                  prefixIcon:
+                                      Image.asset('assets/images/user.png'),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: const BorderSide(
+                                      color: kGreyColor,
+                                      width: 2,
+                                    ),
                                   ),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: const BorderSide(
-                                    color: kGreyColor,
-                                    width: 2,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-                            Row(
-                              children: [
-                                Checkbox(
-                                  value: true,
-                                  onChanged: (value) {},
-                                  activeColor: kGreyColor,
-                                ),
-                                const SizedBox(width: 5),
-                                const Text(
-                                  'Remember me',
-                                  style: TextStyle(
-                                    color: kGreyColor,
-                                    fontSize: 12,
-                                  ),
-                                ),
-                                const SizedBox(width: 15),
-                                const Text(
-                                  'Don\'t remember the password ?',
-                                  style: TextStyle(
-                                    decoration: TextDecoration.underline,
-                                    color: kGreyColor,
-                                    fontSize: 10,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 30),
-                            Center(
-                              child: SizedBox(
-                                width: MediaQuery.of(context).size.width / 3,
-                                height: MediaQuery.of(context).size.width / 8.5,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      backgroundColor: kGreyColor2),
-                                  onPressed: () {
-                                    if (_formKey.currentState!.validate()) {
-                                      controller.signIn(
-                                        _userController.text.trim(),
-                                        _passwordController.text.trim(),
-                                      );
-                                    } else {
-                                      return null;
-                                    }
-                                  },
-                                  child: const Text('Login'),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Text(
-                                  'Don\'t have account?',
-                                  style: TextStyle(color: kGreyColor),
-                                ),
-                                TextButton(
-                                  onPressed: () {
-                                    // Get.to(DashboardScreen());
-                                    Get.toNamed(Routes.dashboardScreen);
-                                  },
-                                  child: const Text(
-                                    'Sign Up',
-                                    style: TextStyle(
-                                      color: kGreyColor2,
-                                      decoration: TextDecoration.underline,
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: const BorderSide(
+                                      color: kGreyColor,
+                                      width: 2,
                                     ),
                                   ),
                                 ),
-                              ],
-                            ),
-                          ],
+                              ),
+                              const SizedBox(height: 10),
+                              const Text(
+                                'Password',
+                                style: TextStyle(color: kGreyColor),
+                              ),
+                              const SizedBox(height: 10),
+                              TextFormField(
+                                controller: _passwordController,
+                                validator: (value) {
+                                  if (value.toString().length < 6) {
+                                    return 'Password should be longer or equal to 6 characters.';
+                                  }
+                                  return null;
+                                },
+                                obscureText: true,
+                                decoration: InputDecoration(
+                                  hintText: 'Enter your password',
+                                  prefixIcon:
+                                      Image.asset('assets/images/lock.png'),
+                                  suffixIcon: const Icon(
+                                    Icons.visibility_off,
+                                    color: kGreyColor,
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: const BorderSide(
+                                      color: kGreyColor,
+                                      width: 2,
+                                    ),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: const BorderSide(
+                                      color: kGreyColor,
+                                      width: 2,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Checkbox(
+                                        value: true,
+                                        onChanged: (value) {},
+                                        activeColor: kGreyColor,
+                                      ),
+                                      
+                                      const Text(
+                                        'Remember me',
+                                        style: TextStyle(
+                                          color: kGreyColor,
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                          
+                                  const Text(
+                                    'Don\'t remember the password ?',
+                                    style: TextStyle(
+                                      decoration: TextDecoration.underline,
+                                      color: kGreyColor,
+                                      fontSize: 10,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 30),
+                              Center(
+                                child: Container(
+                                  constraints: const BoxConstraints(
+                                    minHeight: 32,
+                                    minWidth: 118,
+                                  ),
+                                  width: 15.w,
+                                  height: 4.h,
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      backgroundColor: kGreyColor2,
+                                    ),
+                                    onPressed: () {
+                                      if (_formKey.currentState!.validate()) {
+                                        controller.signIn(
+                                          _userController.text.trim(),
+                                          _passwordController.text.trim(),
+                                        );
+                                      } else {
+                                        return null;
+                                      }
+                                    },
+                                    child: const Text('Login'),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const Text(
+                                    'Don\'t have account?',
+                                    style: TextStyle(color: kGreyColor),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      // Get.to(DashboardScreen());
+                                      Get.toNamed(Routes.dashboardScreen);
+                                    },
+                                    child: const Text(
+                                      'Sign Up',
+                                      style: TextStyle(
+                                        color: kGreyColor2,
+                                        decoration: TextDecoration.underline,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
