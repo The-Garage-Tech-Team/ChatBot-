@@ -15,10 +15,13 @@ class AdminChatWidget extends StatelessWidget {
   final chatController = Get.put(ChatContoller1());
   final String selectedUserID;
   //var userUid = FirebaseAuth.instance.currentUser!.uid;
-
+  
   AdminChatWidget(
-      {super.key, required this.docID, required this.selectedUserID,required this.status});
-      final bool status;
+      {super.key,
+      required this.docID,
+      required this.selectedUserID,
+      required this.status});
+  final bool status;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +30,7 @@ class AdminChatWidget extends StatelessWidget {
       width: Get.width * 0.40,
       height: Get.height * 0.75,
       constraints: const BoxConstraints(
-        maxHeight:  1200,
+        maxHeight: 1200,
         maxWidth: 900,
       ),
       child: Material(
@@ -37,30 +40,30 @@ class AdminChatWidget extends StatelessWidget {
             alignment: Alignment.centerRight,
             color: const Color.fromRGBO(54, 55, 64, 1),
             // height: 40,
-            child:  MarkClosedButton(selectedUserID :selectedUserID),
-            // chatController.status ? Container(
-            //     width: 120,
-            //     margin: EdgeInsets.only(right: 24, top: 9, bottom: 9),
-            //     decoration: BoxDecoration(border:  Border.all(
-            //       color: Colors.white,
-            //       width: 1,
-            //     ),    borderRadius: BorderRadius.circular(4),
-            //     ),
-            //     child: Padding(
-            //       padding: const EdgeInsets.all(8.0),
-            //       child: Row(
-            //         children: [
-            //           Padding(
-            //             padding: const EdgeInsets.all(8.0),
-            //             child: SvgPicture.asset("assets/icons/check.svg", width: 14,),
-            //           ),
-            //           Text("closed", style: TextStyle(color: Colors.white, fontFamily: "Mulish" ),
-            //           ),
-            //         ],
-            //       ),
-            //     )):
-            // MarkClosedButton(selectedUserID :selectedUserID),
+            child:  MarkClosedButton(selectedUserID: selectedUserID),
           ),
+          // child: chatController.status ? Container(
+          //       width: 120,
+          //       margin: EdgeInsets.only(right: 24, top: 9, bottom: 9),
+          //       decoration: BoxDecoration(border:  Border.all(
+          //         color: Colors.white,
+          //         width: 1,
+          //       ),    borderRadius: BorderRadius.circular(4),
+          //       ),
+          //       child: Padding(
+          //         padding: const EdgeInsets.all(8.0),
+          //         child: Row(
+          //           children: [
+          //             Padding(
+          //               padding: const EdgeInsets.all(8.0),
+          //               child: SvgPicture.asset("assets/icons/check.svg", width: 20,color: Colors.white,),
+          //             ),
+          //             Text("Closed", style: TextStyle(fontSize:14,color: Colors.white, fontFamily: "Mulish" ),
+          //             ),
+          //           ],
+          //         ),
+          //       )):
+          // ),
           Expanded(
               child: StreamBuilder<QuerySnapshot>(
                   stream: chatController.getMessageByStream(docID),
@@ -71,9 +74,9 @@ class AdminChatWidget extends StatelessWidget {
                           child: SizedBox(
                         //height: 15.0,
                         //width: 15.0,
-                             child: Transform.scale(
+                        child: Transform.scale(
                           scale: 2,
-                               child: const CircularProgressIndicator(
+                          child: const CircularProgressIndicator(
                             strokeWidth: 2,
                             valueColor:
                                 AlwaysStoppedAnimation<Color>(Colors.white),
@@ -84,7 +87,7 @@ class AdminChatWidget extends StatelessWidget {
                       if (snapshot.data!.docs.length < 1) {
                         return Container(
                           decoration: BoxDecoration(color: Colors.white),
-                         // width:  1200,
+                          // width:  1200,
                           //height: 980,
                         );
                       }

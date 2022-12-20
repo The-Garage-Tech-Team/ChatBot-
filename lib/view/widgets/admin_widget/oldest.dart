@@ -5,11 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../view/widgets/chat widgets/admin_chat_widget.dart';
 
-
 class OldestChat extends StatelessWidget {
-  OldestChat({Key? key}) : super(key: key);
+  OldestChat({Key? key, required this.status}) : super(key: key);
 
-
+  final bool status;
   String date = DateTime.now().toString().changeDateFormat();
   final controller = Get.find<DashboardController>();
   final db = FirebaseFirestore.instance;

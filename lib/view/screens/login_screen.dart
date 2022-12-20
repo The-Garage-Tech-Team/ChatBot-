@@ -37,7 +37,6 @@ class LoginScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-
                           constraints: const BoxConstraints(
                             minHeight: 52,
                             minWidth: 133,
@@ -103,9 +102,9 @@ class LoginScreen extends StatelessWidget {
                       child: Form(
                         key: _formKey,
                         child: Container(
-                           constraints: const BoxConstraints(
+                          constraints: const BoxConstraints(
                             minHeight: 52,
-                            minWidth: 150*2,
+                            minWidth: 150 * 2,
                           ),
                           width: 40.w,
                           height: 35.h,
@@ -269,7 +268,8 @@ class LoginScreen extends StatelessWidget {
                               ),
                               const SizedBox(height: 10),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Row(
                                     children: [
@@ -278,7 +278,6 @@ class LoginScreen extends StatelessWidget {
                                         onChanged: (value) {},
                                         activeColor: kGreyColor,
                                       ),
-                                      
                                       const Text(
                                         'Remember me',
                                         style: TextStyle(
@@ -288,7 +287,6 @@ class LoginScreen extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                          
                                   const Text(
                                     'Don\'t remember the password ?',
                                     style: TextStyle(
@@ -299,7 +297,7 @@ class LoginScreen extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              const SizedBox(height: 30),
+                              // const SizedBox(height: 30),
                               Center(
                                 child: Container(
                                   constraints: const BoxConstraints(
@@ -329,7 +327,7 @@ class LoginScreen extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              const SizedBox(height: 10),
+                              // const SizedBox(height: 10),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -340,7 +338,7 @@ class LoginScreen extends StatelessWidget {
                                   TextButton(
                                     onPressed: () {
                                       // Get.to(DashboardScreen());
-                                      Get.toNamed(Routes.dashboardScreen);
+                                      Get.toNamed(Routes.signUpScreen);
                                     },
                                     child: const Text(
                                       'Sign Up',

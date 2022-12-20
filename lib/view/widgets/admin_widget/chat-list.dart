@@ -46,8 +46,8 @@ class ChatList extends StatelessWidget {
                   ),
                   body: TabBarView(
                     children: [
-                      NewestChat(),
-                      OldestChat(),
+                      NewestChat(status:false),
+                      OldestChat(status:true),
                     ],
                   ),
                 ),
