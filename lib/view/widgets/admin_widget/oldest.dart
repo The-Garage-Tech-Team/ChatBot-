@@ -44,17 +44,20 @@ class OldestChat extends StatelessWidget {
                             children: [
                               InkWell(
                                 onTap: () {
+                                  controller.selectedUserID =
+                                      snapshot.data!.docs[index].id;
                                   // print(snapshot.data!.docs[index].id);
                                   // db
                                   //     .collection('newChatbot')
                                   //     .doc(snapshot.data!.docs[index].id)
                                   //     .update({'status': 'isOpened'});
-                                  Get.to(
-                                    () => AdminChatWidget(
-                                      selectedUserID: controller.selectedUserID,
-                                      docID: snapshot.data!.docs[index].id,
-                                    ),
-                                  );
+                                  // Get.to(
+                                  //   () => AdminChatWidget(
+                                  //     selectedUserID: controller.selectedUserID,
+                                  //     docID: snapshot.data!.docs[index].id,
+                                  //   ),
+                                  // );
+                                  controller.isPressedFun();
                                 },
                                 child: Card(
                                     color: Colors.white,

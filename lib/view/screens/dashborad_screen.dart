@@ -22,20 +22,7 @@ class DashboardScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          // Center(child: SizedBox(
-          //     height: 15.0,
-          //     width: 15.0,
-          //     child: Transform.scale(
-          //       scale: 2,
-          //       child: const CircularProgressIndicator(
-          //         strokeWidth: 2,
-          //         valueColor: AlwaysStoppedAnimation<Color>(
-          //           Colors.grey
-          //         ),
-          //       ),
-          //     ),
-          //   ),
-          // ),
+
           Center(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
