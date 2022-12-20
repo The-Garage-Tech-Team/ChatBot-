@@ -1,19 +1,15 @@
 import 'package:chatbot_template/constants/constants.dart';
 import 'package:chatbot_template/logic/controller/login_controller.dart';
 import 'package:chatbot_template/route/routes.dart';
-import 'package:chatbot_template/view/screens/bottom_bar_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../logic/controller/dashboard_controller.dart';
-import 'dashborad_screen.dart';
-
-class LoginScreen extends StatelessWidget {
+class SignUpScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
-  final _userController = TextEditingController();
+  final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  LoginScreen({super.key});
+  SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,63 +24,7 @@ class LoginScreen extends StatelessWidget {
                   children: [
                     const SizedBox(height: 130),
                     const Text(
-                      'Login by',
-                      style: TextStyle(color: kGreyColor),
-                    ),
-                    const SizedBox(height: 30),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width / 2.7,
-                          height: MediaQuery.of(context).size.width / 6.7,
-                          decoration: BoxDecoration(
-                            color: kRedColor,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset('assets/images/google.png'),
-                              const SizedBox(width: 8),
-                              const Text(
-                                'with Google',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(width: 16),
-                        Container(
-                          width: MediaQuery.of(context).size.width / 2.7,
-                          height: MediaQuery.of(context).size.width / 6.7,
-                          decoration: BoxDecoration(
-                            color: Colors.black,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset('assets/images/apple.png'),
-                              const SizedBox(width: 8),
-                              const Text(
-                                'with Apple',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 50),
-                    const Text(
-                      'or',
+                      'Sign up',
                       style: TextStyle(color: kGreyColor),
                     ),
                     const SizedBox(height: 30),
@@ -96,12 +36,12 @@ class LoginScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Text(
-                              'User Name',
+                              'Email',
                               style: TextStyle(color: kGreyColor),
                             ),
                             const SizedBox(height: 10),
                             TextFormField(
-                              controller: _userController,
+                              controller: _emailController,
                               validator: (value) {
                                 bool _isEmailValid = RegExp(
                                         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
@@ -112,8 +52,9 @@ class LoginScreen extends StatelessWidget {
                                 return null;
                               },
                               decoration: InputDecoration(
-                                hintText: 'Enter your name',
-                                prefixIcon: Image.asset('images/user.png'),
+                                hintText: 'Enter your email',
+                                prefixIcon:
+                                    Image.asset('assets/images/user.png'),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                   borderSide: const BorderSide(
@@ -147,7 +88,8 @@ class LoginScreen extends StatelessWidget {
                               obscureText: true,
                               decoration: InputDecoration(
                                 hintText: 'Enter your password',
-                                prefixIcon: Image.asset('images/lock.png'),
+                                prefixIcon:
+                                    Image.asset('assets/images/lock.png'),
                                 suffixIcon: const Icon(
                                   Icons.visibility_off,
                                   color: kGreyColor,
@@ -205,9 +147,9 @@ class LoginScreen extends StatelessWidget {
                                       backgroundColor: kGreyColor2),
                                   onPressed: () {
                                     if (_formKey.currentState!.validate()) {
-                                      controller.signIn(
-                                        _userController.text.trim(),
-                                        _passwordController.text.trim(),
+                                      controller.signUpUsingFirebase(
+                                        email: _emailController.text.trim(),
+                                        password: _passwordController.text,
                                       );
                                     } else {
                                       return null;
@@ -227,11 +169,10 @@ class LoginScreen extends StatelessWidget {
                                 ),
                                 TextButton(
                                   onPressed: () {
-                                    // Get.to(DashboardScreen());
-                                    Get.toNamed(Routes.signUpScreen);
+                                    Get.toNamed(Routes.loginScreen);
                                   },
                                   child: const Text(
-                                    'Sing Up',
+                                    'Login',
                                     style: TextStyle(
                                       color: kGreyColor2,
                                       decoration: TextDecoration.underline,

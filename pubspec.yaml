@@ -50,6 +50,7 @@ dependencies:
   grouped_list: ^5.1.2
   badges: ^2.0.3
   getwidget: ^3.0.1
+  sizer: ^2.0.15
   
 
 dev_dependencies:
@@ -78,8 +79,6 @@ flutter:
 assets:
   - assets/images/
   - assets/icons/
- 
-
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

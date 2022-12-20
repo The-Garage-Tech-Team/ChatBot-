@@ -4,12 +4,12 @@ import 'package:google_fonts/google_fonts.dart';
 class TextUtils extends StatelessWidget {
   final String text;
   final double fontSize;
-  final FontWeight fontWeight;
+  final FontWeight? fontWeight;
   final Color color;
 
   TextUtils(
       {required this.fontSize,
-      required this.fontWeight,
+      this.fontWeight,
       required this.text,
       required this.color,
       Key? key})
