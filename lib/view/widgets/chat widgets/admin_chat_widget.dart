@@ -32,7 +32,7 @@ class AdminChatWidget extends StatelessWidget {
             alignment: Alignment.centerRight,
             color: const Color.fromRGBO(54, 55, 64, 1),
             // height: 40,
-            child: MarkClosedButton(onPressedFunction: () {  },),
+            child: MarkClosedButton(selectedUserID :selectedUserID),
           ),
           Expanded(
               child: StreamBuilder<QuerySnapshot>(

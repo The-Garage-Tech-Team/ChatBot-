@@ -4,18 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 class MarkClosedButton extends StatelessWidget {
-  final VoidCallback onPressedFunction;
 
-   MarkClosedButton({super.key, required this.onPressedFunction});
+
+   MarkClosedButton({super.key, required this.selectedUserID});
   final db = FirebaseFirestore.instance;
-  final chatController = Get.put(ChatContoller1());
+ final String selectedUserID;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(right: 10.0, top: 9, bottom: 9),
       child: ElevatedButton(
         onPressed: () {
-          db.collection('newChatbot').doc(chatController.id).update({'status': 'isClose'});
+          db.collection('newChatbot').doc(selectedUserID).update({'status': 'isClose'});
         },
         style: ElevatedButton.styleFrom(
           shape:
