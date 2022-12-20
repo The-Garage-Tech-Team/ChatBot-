@@ -16,7 +16,6 @@ class LoginController extends GetxController {
   final GetStorage authBox = GetStorage();
   var displayUserName = ''.obs;
   var displayUserEmail = ''.obs;
-  var loggedIn = false;
   final Rx<UserModel> _userModel =
       UserModel(email: '', uid: '', password: '').obs;
   UserModel get user => _userModel.value;
