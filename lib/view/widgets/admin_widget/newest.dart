@@ -1,13 +1,13 @@
-import 'package:badges/badges.dart';
+import 'package:chatbot_template/logic/controller/chat_controller_1.dart';
+import 'package:chatbot_template/logic/controller/dashboard_controller.dart';
 import 'package:chatbot_template/model/extensions.dart';
-import 'package:chatbot_template/view/widgets/admin_widget/user-profile.dart';
 import 'package:chatbot_template/view/widgets/chat%20widgets/admin_chat_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../logic/controller/dashboard_controller.dart';
 
 class NewestChat extends StatelessWidget {
+  final chatController = Get.put(ChatContoller1());
   NewestChat({Key? key}) : super(key: key);
 
   String date = DateTime.now().toString().changeDateFormat();
@@ -18,26 +18,45 @@ class NewestChat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-        stream: db.collection('users').snapshots(),
+        stream: db.collection('newChatbot').snapshots(),
         builder: (context, snapshot) {
           return !snapshot.hasData
-              ? Center(child: CircularProgressIndicator())
+              ? Center(
+                  child: SizedBox(
+                    height: 15.0,
+                    width: 15.0,
+                    child: Transform.scale(
+                      scale: 2,
+                      child: const CircularProgressIndicator(
+                        strokeWidth: 2,
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.grey),
+                      ),
+                    ),
+                  ),
+                )
               : Expanded(
                   child: ListView.builder(
                       // shrinkWrap: true,
                       itemCount: snapshot.data!.docs.length,
                       itemBuilder: (context, index) {
+                        if (snapshot.data!.docs[index]['status'] ==
+                                'isOpened' ||
+                            snapshot.data!.docs[index]['status'] == 'onHold') {
                         return Column(
                           children: [
                             InkWell(
                               onTap: () {
-                                // print(snapshot.data!.docs[index].id);
+                                controller.selectedUserID =
+                                    snapshot.data!.docs[index].id;
+
+                                // controller.test(snapshot, index);
                                 db
-                                    .collection('users')
+                                    .collection('newChatbot')
                                     .doc(snapshot.data!.docs[index].id)
                                     .update({'status': 'isOpened'});
-                                Get.to(() => AdminChatWidget(
-                                    docID: snapshot.data!.docs[index].id));
+                                controller.isPressedFun();
+                                // Get.to(() => AdminChatWidget(selectedUserID:  controller.selectedUserID,
+                                //     docID: snapshot.data!.docs[index].id));
                               },
                               child: Card(
                                   color: Colors.white,
@@ -64,10 +83,10 @@ class NewestChat extends StatelessWidget {
                                                 const EdgeInsets.only(left: 5),
                                             child: ListTile(
                                               title: Text(
-                                                snapshot.data!
-                                                    .docs[index]['user_email']
+                                                snapshot.data!.docs[index]
+                                                    .data()['user_email']
                                                     .toString(),
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                   fontSize: 14,
                                                   // fontWeight: FontWeight.w600,
                                                   fontStyle: FontStyle.normal,
@@ -81,19 +100,19 @@ class NewestChat extends StatelessWidget {
                                               subtitle: Text(controller
                                                   .timestampToDesiredFormat(
                                                       snapshot.data!.docs[index]
-                                                          [
-                                                          'last_messages_time'])),
+                                                              .data()[
+                                                          'last_message_time'])),
                                               leading: const Icon(Icons.face),
-                                              trailing: Badge(
-                                                elevation: 0,
-                                                shape: BadgeShape.circle,
-                                                padding: EdgeInsets.all(7),
-                                                badgeContent: const Text(
-                                                  "0",
-                                                  style: TextStyle(
-                                                      color: Colors.white),
-                                                ),
-                                              ),
+                                              trailing: const Text(""),
+                                              // Badge(
+                                              //   elevation: 0,
+                                              //   shape: BadgeShape.circle,
+                                              //   padding: EdgeInsets.all(7),
+                                              //   badgeContent: const Text(
+                                              //     "0",
+                                              //     style: TextStyle(color: Colors.white),
+                                              //   ),
+                                              // ),
                                             ),
                                           ),
                                         ),
@@ -103,6 +122,9 @@ class NewestChat extends StatelessWidget {
                             ),
                           ],
                         );
+                        } else {
+                          return Container();
+                        }
                       }),
                 );
         });

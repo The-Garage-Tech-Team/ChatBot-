@@ -28,17 +28,17 @@ class SideBarWidget extends StatelessWidget {
                   shrinkWrap: true,
                   children: [
                     NavItem(
-                      image: 'icons/overview.svg',
+                      image: 'assets/icons/overview.svg',
                       title: controller.sideNav[0],
                       controller: controller,
                     ),
                     NavItem(
-                      image: 'icons/check.svg',
+                      image: 'assets/icons/check.svg',
                       title: controller.sideNav[1],
                       controller: controller,
                     ),
                     NavItem(
-                      image: 'icons/closed.svg',
+                      image: 'assets/icons/closed.svg',
                       title: controller.sideNav[2],
                       controller: controller,
                     ),

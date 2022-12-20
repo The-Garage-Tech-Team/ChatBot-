@@ -12,34 +12,39 @@ class NewChatContoller extends GetxController {
   final adminUid = 'vJI1WLlXPucQmbvcpl5zfsAa5W33';
 
   // Store msgs to Firestore
-  void storeMessage(String msg) async {
-    await firestore
-        .collection('users')
-        .doc(currentUserID)
-        .collection('messages')
-        .doc(adminUid)
-        .collection('chats')
-        .add({
-      "senderID": currentUserID,
-      "receiverID": adminUid,
-      "message": msg,
-      "time": FieldValue.serverTimestamp(),
-    }).then((value) {
-      firestore.collection('users').doc(currentUserID).set({
-        "last_messages_time": FieldValue.serverTimestamp(),
-        "user_email": currentUserEmail,
-        "status": "onHold",
+  void storeMessage(String selectedUserID, String msg) async {
+    // the following if statement fixes the duplication issue in the admin chat.
+    selectedUserID = 'LcgP0tAwTTTcXNiWocFZcNJj3tB3';
+    if (currentUserID != adminUid) {
+      await firestore
+          .collection('users')
+          .doc(selectedUserID)
+          .collection('messages')
+          .doc(adminUid)
+          .collection('chats')
+          .add({
+        "senderID": selectedUserID,
+        "receiverID": adminUid,
+        "message": msg,
+        "time": FieldValue.serverTimestamp(),
+      }).then((value) {
+        firestore.collection('users').doc(selectedUserID).set({
+          "last_messages_time": FieldValue.serverTimestamp(),
+          "user_email": currentUserEmail,
+          "status": "onHold",
+        });
       });
-    });
+    }
+
     await firestore
         .collection('users')
         .doc(adminUid)
         .collection('messages')
-        .doc(currentUserID)
+        .doc(selectedUserID)
         .collection('chats')
         .add({
-      "senderID": currentUserID,
-      "receiverID": adminUid,
+      "senderID": adminUid, // if it is the admin then it will be admin ID
+      "receiverID": selectedUserID, // this must be the selected user ID
       "message": msg,
       "time": FieldValue.serverTimestamp(),
     }).then((value) {
@@ -65,7 +70,7 @@ class NewChatContoller extends GetxController {
         .snapshots();
   }
 
-  //check if it's the current user returns true
+  //Check if it's the current user returns true
   bool isCurrentUser(msgSenderID) {
     if (currentUserID == msgSenderID) {
       return true;

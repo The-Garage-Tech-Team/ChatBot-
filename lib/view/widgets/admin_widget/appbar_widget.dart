@@ -15,7 +15,7 @@ class AppBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-        stream: db.collection('users').snapshots(),
+        stream: db.collection('newChatbot').snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return Container();

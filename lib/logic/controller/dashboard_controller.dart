@@ -8,8 +8,13 @@ class DashboardController extends GetxController {
   List<String> casesItem = ['Opened', 'Closed', 'On hold', 'Total Chat'];
 
   String selected = '';
-
+  var selectedUserID = '';
   final db = FirebaseFirestore.instance;
+  bool isPressed = false;
+
+
+  var oldCounter = 0.obs;
+  var newCounter = 0.obs;
 
   void checkSelected(String title) {
     selected = title;
@@ -72,5 +77,18 @@ class DashboardController extends GetxController {
         print('isClose' + isClose.toString());
       }
     }
+  }
+
+  void test(snapshot, index) {
+    //  db
+    //     .collection('users')
+    //     .doc()
+// chats
+// senderID
+  }
+
+  void isPressedFun() {
+    isPressed = true;
+    update();
   }
 }

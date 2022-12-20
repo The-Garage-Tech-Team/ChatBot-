@@ -11,8 +11,9 @@ import '../../view/screens/dashborad_screen.dart';
 class LoginController extends GetxController {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
+  var displayName = '';
+  var loggedIn = false;
   final GetStorage authBox = GetStorage();
-
   var displayUserName = ''.obs;
   var displayUserEmail = ''.obs;
   var loggedIn = false;
@@ -34,6 +35,7 @@ class LoginController extends GetxController {
           colorText: kBackgroundColor);
 
       loggedIn = true;
+      authBox.write('auth', loggedIn);
       // This solves the error: navigation to screens must be after authentication (sign-in)
       if (email == 'admin@gmail.com' && password == 'admin123') {
         Get.to(() => DashboardScreen());
@@ -128,6 +130,7 @@ class LoginController extends GetxController {
   Future<void> signout() async {
     await _firebaseAuth.signOut();
     loggedIn = false;
+    authBox.remove('auth');
     update();
   }
 }

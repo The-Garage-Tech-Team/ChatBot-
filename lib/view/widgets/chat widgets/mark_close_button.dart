@@ -2,26 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class MarkClosedButton extends StatelessWidget {
-  const MarkClosedButton({super.key});
+  final VoidCallback onPressedFunction;
+
+  const MarkClosedButton({super.key, required this.onPressedFunction});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(right: 10.0, top: 9, bottom: 9),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onPressedFunction,
         style: ElevatedButton.styleFrom(
-           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0)),
-           backgroundColor: Colors.white,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0)),
+          backgroundColor: Colors.white,
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
-          children:  [
-            SvgPicture.asset('images/checkMarkIcon.svg', 
-             width: 14,
-             height: 14,
-             fit: BoxFit.scaleDown,
+          children: [
+            SvgPicture.asset(
+              'assets/images/checkMarkIcon.svg',
+              width: 14,
+              height: 14,
+              fit: BoxFit.scaleDown,
             ),
             const Padding(
               padding: EdgeInsets.only(left: 6.0),

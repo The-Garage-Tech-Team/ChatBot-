@@ -113,7 +113,7 @@ class LoginScreen extends StatelessWidget {
                               },
                               decoration: InputDecoration(
                                 hintText: 'Enter your name',
-                                prefixIcon: Image.asset('images/user.png'),
+                                prefixIcon: Image.asset('assets/images/user.png'),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                   borderSide: const BorderSide(
@@ -147,7 +147,7 @@ class LoginScreen extends StatelessWidget {
                               obscureText: true,
                               decoration: InputDecoration(
                                 hintText: 'Enter your password',
-                                prefixIcon: Image.asset('images/lock.png'),
+                                prefixIcon: Image.asset('assets/images/lock.png'),
                                 suffixIcon: const Icon(
                                   Icons.visibility_off,
                                   color: kGreyColor,
@@ -222,7 +222,7 @@ class LoginScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 const Text(
-                                  'Dont have account ?',
+                                  'Don\'t have account?',
                                   style: TextStyle(color: kGreyColor),
                                 ),
                                 TextButton(
@@ -231,7 +231,7 @@ class LoginScreen extends StatelessWidget {
                                     Get.toNamed(Routes.signUpScreen);
                                   },
                                   child: const Text(
-                                    'Sing Up',
+                                    'Sign Up',
                                     style: TextStyle(
                                       color: kGreyColor2,
                                       decoration: TextDecoration.underline,
