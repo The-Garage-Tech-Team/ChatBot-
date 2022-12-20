@@ -12,6 +12,14 @@ class ChatContoller1 extends GetxController {
   final currentUserID = FirebaseAuth.instance.currentUser!.uid;
   final adminUid = 'vJI1WLlXPucQmbvcpl5zfsAa5W33';
   var id = '';
+
+  bool status = false;
+
+  void updateStatus() {
+    status = true;
+    update();
+  }
+
   void updateDocID(docId) {
     id = docId;
     print(id);

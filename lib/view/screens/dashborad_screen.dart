@@ -42,6 +42,7 @@ class DashboardScreen extends StatelessWidget {
                 print(controller.isPressed);
                 return controller.isPressed
                     ? AdminChatWidget(
+                        status: chatController.status,
                         selectedUserID: controller.selectedUserID,
                         docID: controller.selectedUserID)
                     : Container();

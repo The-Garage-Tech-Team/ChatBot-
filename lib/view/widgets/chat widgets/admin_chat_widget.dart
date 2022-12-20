@@ -5,7 +5,10 @@ import 'package:chatbot_template/view/widgets/chat%20widgets/mark_close_button.d
 import 'package:chatbot_template/view/widgets/chat%20widgets/user_response.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+
+import '../../../logic/controller/dashboard_controller.dart';
 
 class AdminChatWidget extends StatelessWidget {
   final String docID;
@@ -14,7 +17,9 @@ class AdminChatWidget extends StatelessWidget {
   //var userUid = FirebaseAuth.instance.currentUser!.uid;
 
   AdminChatWidget(
-      {super.key, required this.docID, required this.selectedUserID});
+      {super.key, required this.docID, required this.selectedUserID,required this.status});
+      final bool status;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,7 +37,29 @@ class AdminChatWidget extends StatelessWidget {
             alignment: Alignment.centerRight,
             color: const Color.fromRGBO(54, 55, 64, 1),
             // height: 40,
-            child: MarkClosedButton(selectedUserID :selectedUserID),
+            child:  MarkClosedButton(selectedUserID :selectedUserID),
+            // chatController.status ? Container(
+            //     width: 120,
+            //     margin: EdgeInsets.only(right: 24, top: 9, bottom: 9),
+            //     decoration: BoxDecoration(border:  Border.all(
+            //       color: Colors.white,
+            //       width: 1,
+            //     ),    borderRadius: BorderRadius.circular(4),
+            //     ),
+            //     child: Padding(
+            //       padding: const EdgeInsets.all(8.0),
+            //       child: Row(
+            //         children: [
+            //           Padding(
+            //             padding: const EdgeInsets.all(8.0),
+            //             child: SvgPicture.asset("assets/icons/check.svg", width: 14,),
+            //           ),
+            //           Text("closed", style: TextStyle(color: Colors.white, fontFamily: "Mulish" ),
+            //           ),
+            //         ],
+            //       ),
+            //     )):
+            // MarkClosedButton(selectedUserID :selectedUserID),
           ),
           Expanded(
               child: StreamBuilder<QuerySnapshot>(
