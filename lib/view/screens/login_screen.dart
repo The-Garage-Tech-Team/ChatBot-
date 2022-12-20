@@ -4,6 +4,7 @@ import 'package:chatbot_template/route/routes.dart';
 import 'package:chatbot_template/view/screens/bottom_bar_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../logic/controller/dashboard_controller.dart';
 import 'dashborad_screen.dart';
@@ -36,8 +37,12 @@ class LoginScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          width: MediaQuery.of(context).size.width / 2.7,
-                          height: MediaQuery.of(context).size.width / 6.7,
+                          constraints: const BoxConstraints( 
+      minHeight:  52,
+      minWidth: 133,
+   ), 
+                          width: 15.w,
+                          height: 5.h,
                           decoration: BoxDecoration(
                             color: kRedColor,
                             borderRadius: BorderRadius.circular(10),
@@ -59,8 +64,12 @@ class LoginScreen extends StatelessWidget {
                         ),
                         const SizedBox(width: 16),
                         Container(
-                          width: MediaQuery.of(context).size.width / 2.7,
-                          height: MediaQuery.of(context).size.width / 6.7,
+                              constraints: const BoxConstraints(
+                            minHeight: 52,
+                            minWidth: 133,
+                          ),
+                          width: 15.w,
+                          height: 5.h,
                           decoration: BoxDecoration(
                             color: Colors.black,
                             borderRadius: BorderRadius.circular(10),

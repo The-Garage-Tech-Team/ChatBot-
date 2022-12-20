@@ -7,8 +7,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:responsive_sizer/responsive_sizer.dart';
-
 class AdminChatWidget extends StatelessWidget {
   final String docID;
   final chatController = Get.put(ChatContoller1());
@@ -20,8 +18,9 @@ class AdminChatWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: Get.width - 1200,
-      height: Get.width - 980,
+      decoration: BoxDecoration(color: Colors.white),
+      width: 1200,
+      height: 980,
       child: Material(
         child: Column(children: [
           Container(
@@ -51,7 +50,11 @@ class AdminChatWidget extends StatelessWidget {
                       ));
                     } else if (snapshot.hasData) {
                       if (snapshot.data!.docs.length < 1) {
-                        return Container();
+                        return Container(
+                          decoration: BoxDecoration(color: Colors.white),
+                          width:  1200,
+                          height: 980,
+                        );
                       }
                       return ListView.builder(
                         reverse: true,
