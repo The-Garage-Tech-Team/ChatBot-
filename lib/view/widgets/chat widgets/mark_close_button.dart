@@ -23,7 +23,6 @@ class MarkClosedButton extends StatelessWidget {
                       .collection('newChatbot')
                       .doc(selectedUserID)
                       .update({'status': 'isClose'});
-                
 
                   chatController.status =
                       await chatController.getStatus(selectedUserID);

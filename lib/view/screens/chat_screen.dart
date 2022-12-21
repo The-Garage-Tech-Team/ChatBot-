@@ -1,4 +1,4 @@
-import 'package:chatbot_template/constants/constants.dart';
+import 'package:chatbot_template/uitls/constants.dart';
 import 'package:chatbot_template/logic/controller/chat_controller_1.dart';
 import 'package:chatbot_template/view/widgets/chat%20widgets/admin_response.dart';
 import 'package:chatbot_template/view/widgets/chat%20widgets/input_send_msg.dart';
@@ -7,12 +7,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 class ChatScreen extends StatelessWidget {
-  final chatController = Get.put(ChatContoller1());
+
+  final chatController = Get.find<ChatContoller1>();
   var userUid = FirebaseAuth.instance.currentUser!.uid;
   final String selectedUserID;
+
   ChatScreen({super.key, required this.selectedUserID});
 
   @override

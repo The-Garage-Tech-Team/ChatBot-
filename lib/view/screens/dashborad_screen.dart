@@ -8,22 +8,18 @@ import 'package:chatbot_template/view/widgets/chat%20widgets/admin_chat_widget.d
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
-
 class DashboardScreen extends StatelessWidget {
   final chatController = Get.put(ChatContoller1());
   DashboardScreen({Key? key}) : super(key: key);
 
-  final controller = Get.find<DashboardController>();
+  final dashboardController = Get.find<DashboardController>();
 
   @override
   Widget build(BuildContext context) {
-   
     return Scaffold(
       body: Row(
         children: [
         SideBarWidget(),
-
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -39,11 +35,11 @@ class DashboardScreen extends StatelessWidget {
                 children: [
                   ChatList(),
                   GetBuilder<DashboardController>(builder: (_) {
-                    return controller.isPressed
+                    return dashboardController.isPressed
                         ? AdminChatWidget(
                         status: chatController.status.toString(),
-                        selectedUserID: controller.selectedUserID,
-                        docID: controller.selectedUserID)
+                        selectedUserID: dashboardController.selectedUserID,
+                        docID: dashboardController.selectedUserID)
                         : Container();
                   }),
                   Get.width < 1000 ? Text(""):

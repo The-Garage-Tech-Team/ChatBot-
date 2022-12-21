@@ -1,4 +1,4 @@
-import 'package:chatbot_template/view/widgets/admin_widget/text_utils.dart';
+import 'package:chatbot_template/uitls/text_utils.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,7 +14,7 @@ class AppBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.only(left: 33.0, bottom: 33),
+      padding: EdgeInsets.only(left: 33.0, bottom: 33),
       child: StreamBuilder<QuerySnapshot>(
           stream: db.collection('newChatbot').snapshots(),
           builder: (context, snapshot) {

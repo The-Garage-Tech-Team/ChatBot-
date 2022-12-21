@@ -19,7 +19,7 @@ class ChatContoller1 extends GetxController {
         await firestore.collection('newChatbot').doc(selectedUserID).get();
     var data = getStatusData.data()!['status'];
     status = getStatusData.data()!['status'];
-   
+
     update();
     return status.toString();
   }

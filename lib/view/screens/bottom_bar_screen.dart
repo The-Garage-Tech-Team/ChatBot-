@@ -1,20 +1,11 @@
 import 'package:chatbot_template/logic/controller/bottom_bar_controller.dart';
-import 'package:chatbot_template/view/screens/home_screen.dart';
-import 'package:chatbot_template/view/screens/profile_screen.dart';
-import 'package:chatbot_template/view/screens/settings_screen.dart';
-import 'package:chatbot_template/view/screens/trending_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class BottomBarScreen extends StatelessWidget {
   BottomBarScreen({super.key});
 
-  final List<Map<String, dynamic>> _pages = [
-    {'title': 'Home', 'screen': const HomeScreen()},
-    {'title': 'Profile', 'screen': const ProfileScreen()},
-    {'title': 'Trending', 'screen': const TrendingScreen()},
-    {'title': 'Settings', 'screen': SettingsScreen()},
-  ];
+  final bottomBarController = Get.find<BottomBarController>();
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +13,7 @@ class BottomBarScreen extends StatelessWidget {
         init: BottomBarController(),
         builder: (controller) {
           return Scaffold(
-            body: _pages[controller.currentIndex]['screen'],
+            body: bottomBarController.pages[controller.currentIndex]['screen'],
             bottomNavigationBar: BottomNavigationBar(
               type: BottomNavigationBarType.fixed,
               currentIndex: controller.currentIndex,

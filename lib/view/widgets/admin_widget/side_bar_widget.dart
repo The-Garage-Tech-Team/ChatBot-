@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-
 import '../../../logic/controller/dashboard_controller.dart';
-import '../../screens/dashborad_screen.dart';
 
 class SideBarWidget extends StatelessWidget {
   SideBarWidget({Key? key}) : super(key: key);

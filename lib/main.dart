@@ -8,7 +8,6 @@ import 'firebase_options.dart';
 import 'route/routes.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
@@ -25,20 +24,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ResponsiveSizer(builder: (context, orientation, screenType) {
-    return GetMaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      // This will fix reload page only in the admin side (dashboard), need to fix it also in normal user side.
-      initialRoute: FirebaseAuth.instance.currentUser != null ||
-              GetStorage().read<bool>('auth') == true 
-          ? AppRoutes.dashboard
-          : AppRoutes.login,
-      // initialRoute: AppRoutes.login,
-      getPages: AppRoutes.routes,
-    );
-     });
+      return GetMaterialApp(
+        title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        // This will fix reload page only in the admin side (dashboard), need to fix it also in normal user side.
+        initialRoute: FirebaseAuth.instance.currentUser != null ||
+                GetStorage().read<bool>('auth') == true
+            ? AppRoutes.dashboard
+            : AppRoutes.login,
+        // initialRoute: AppRoutes.login,
+        getPages: AppRoutes.routes,
+      );
+    });
   }
 }

@@ -1,4 +1,4 @@
-import 'package:chatbot_template/view/widgets/chat%20widgets/timestamp_chat.dart';
+import 'package:chatbot_template/uitls/timestamp_chat.dart';
 import 'package:flutter/material.dart';
 
 class AdminResponse extends StatelessWidget {

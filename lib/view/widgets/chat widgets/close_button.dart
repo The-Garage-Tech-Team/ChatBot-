@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -10,8 +8,8 @@ class CloseButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: Get.width * 0.07 ,
-        margin: EdgeInsets.only(right: 24, top: 9, bottom: 9,left: 290),
+        width: Get.width * 0.07,
+        margin: EdgeInsets.only(right: 24, top: 9, bottom: 9, left: 290),
         decoration: BoxDecoration(
           border: Border.all(
             color: Colors.white,
@@ -20,7 +18,7 @@ class CloseButtonWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(6),
         ),
         child: Padding(
-          padding: const EdgeInsets.only(top: 4,bottom: 4),
+          padding: const EdgeInsets.only(top: 4, bottom: 4),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [

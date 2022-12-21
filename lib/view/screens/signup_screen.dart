@@ -1,8 +1,9 @@
-import 'package:chatbot_template/constants/constants.dart';
+import 'package:chatbot_template/uitls/constants.dart';
 import 'package:chatbot_template/logic/controller/login_controller.dart';
 import 'package:chatbot_template/route/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../uitls/my_string.dart';
 
 class SignUpScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
@@ -43,9 +44,7 @@ class SignUpScreen extends StatelessWidget {
                             TextFormField(
                               controller: _emailController,
                               validator: (value) {
-                                bool _isEmailValid = RegExp(
-                                        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                    .hasMatch(value!);
+                                bool _isEmailValid = RegExp(validationEmail).hasMatch(value!);
                                 if (!_isEmailValid) {
                                   return 'Invalid email.';
                                 }

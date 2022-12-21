@@ -1,4 +1,4 @@
-import 'package:chatbot_template/constants/constants.dart';
+import 'package:chatbot_template/uitls/constants.dart';
 import 'package:chatbot_template/view/screens/bottom_bar_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import '../../model/user_model.dart';
 import '../../route/routes.dart';
-import '../../view/screens/dashborad_screen.dart';
 
 class LoginController extends GetxController {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -38,7 +37,7 @@ class LoginController extends GetxController {
       authBox.write('auth', loggedIn);
       // This solves the error: navigation to screens must be after authentication (sign-in)
       if (email == 'admin@gmail.com' && password == 'admin123') {
-      Get.offNamed(Routes.dashboardScreen);
+        Get.offNamed(Routes.dashboardScreen);
       } else {
         Get.to(() => BottomBarScreen());
       }

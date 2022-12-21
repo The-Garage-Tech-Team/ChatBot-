@@ -1,10 +1,9 @@
 import 'package:chatbot_template/logic/controller/chat_controller_1.dart';
 import 'package:chatbot_template/logic/controller/dashboard_controller.dart';
-import 'package:chatbot_template/model/extensions.dart';
+import 'package:chatbot_template/uitls/extensions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../view/widgets/chat widgets/admin_chat_widget.dart';
 
 class OldestChat extends StatelessWidget {
   OldestChat({Key? key, required this.status}) : super(key: key);
@@ -108,7 +107,7 @@ class OldestChat extends StatelessWidget {
                                                                 .data()[
                                                             'last_messages_time'])),
                                                 leading: const Icon(Icons.face),
-                                                trailing: Text("0"),
+                                                trailing: Text(""),
                                                 // Badge(
                                                 //   elevation: 0,
                                                 //   shape: BadgeShape.circle,

@@ -1,13 +1,12 @@
 import 'package:chatbot_template/logic/controller/chat_controller_1.dart';
 import 'package:chatbot_template/logic/controller/dashboard_controller.dart';
-import 'package:chatbot_template/model/extensions.dart';
-import 'package:chatbot_template/view/widgets/chat%20widgets/admin_chat_widget.dart';
+import 'package:chatbot_template/uitls/extensions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class NewestChat extends StatelessWidget {
-  final chatController = Get.put(ChatContoller1());
+  final chatController = Get.find<ChatContoller1>();
   NewestChat({Key? key, required this.status}) : super(key: key);
   final String status;
 
@@ -49,15 +48,14 @@ class NewestChat extends StatelessWidget {
                                 onTap: () {
                                   controller.selectedUserID =
                                       snapshot.data!.docs[index].id;
-                                  chatController.getStatus( snapshot.data!.docs[index].id);
-                                  // controller.test(snapshot, index);
+                                  chatController
+                                      .getStatus(snapshot.data!.docs[index].id);
+
                                   db
                                       .collection('newChatbot')
                                       .doc(snapshot.data!.docs[index].id)
                                       .update({'status': 'isOpened'});
                                   controller.isPressedFun();
-                                  // Get.to(() => AdminChatWidget(selectedUserID:  controller.selectedUserID,
-                                  //     docID: snapshot.data!.docs[index].id));
                                 },
                                 child: Card(
                                     color: Colors.white,
