@@ -9,10 +9,8 @@ import 'chat_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
   SettingsScreen({super.key});
-
-  final chatController = Get.find<ChatContoller>();
+  final chatController = Get.put(ChatContoller());
   @override
-
   Widget build(BuildContext context) {
     return GetBuilder<LoginController>(
         init: LoginController(),

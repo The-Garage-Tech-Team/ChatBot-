@@ -19,38 +19,40 @@ class DashboardScreen extends StatelessWidget {
     return Scaffold(
       body: Row(
         children: [
-        SideBarWidget(),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding:  EdgeInsets.only(left: 33.0, top: 26, bottom: 26),
-              child: Text("Overview", style: TextStyle(fontFamily: "Mulish", fontSize: 24),),
-            ),
-            AppBarWidget(),
-            Expanded(
-              child:
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  ChatList(),
-                  GetBuilder<DashboardController>(builder: (_) {
-                    return dashboardController.isPressed
-                        ? AdminChatWidget(
-                        status: chatController.status.toString(),
-                        selectedUserID: dashboardController.selectedUserID,
-                        docID: dashboardController.selectedUserID)
-                        : Container();
-                  }),
-                  Get.width < 1000 ? Text(""):
-                  UserProfile(),
-                ],
+          SideBarWidget(),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(left: 33.0, top: 26, bottom: 26),
+                child: Text(
+                  "Overview",
+                  style: TextStyle(fontFamily: "Mulish", fontSize: 24),
+                ),
               ),
-            ),
-          ],
-        ),
-
-      ],),
+              AppBarWidget(),
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    ChatList(),
+                    GetBuilder<DashboardController>(builder: (_) {
+                      return dashboardController.isPressed
+                          ? AdminChatWidget(
+                              status: chatController.status.toString(),
+                              selectedUserID:
+                                  dashboardController.selectedUserID,
+                              docID: dashboardController.selectedUserID)
+                          : Container();
+                    }),
+                    Get.width < 1000 ? Text("") : UserProfile(),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

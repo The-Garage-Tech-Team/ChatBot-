@@ -1,6 +1,6 @@
 import 'package:chatbot_template/logic/controller/chat_controller_1.dart';
 import 'package:chatbot_template/logic/controller/dashboard_controller.dart';
-import 'package:chatbot_template/uitls/extensions.dart';
+import 'package:chatbot_template/model/extensions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

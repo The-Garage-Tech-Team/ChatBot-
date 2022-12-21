@@ -38,7 +38,7 @@ class MarkClosedButton extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     SvgPicture.asset(
-                      'assets/images/checkMarkIcon.svg',
+                      'assets/icons/checkMarkIcon.svg',
                       width: 14,
                       height: 14,
                       fit: BoxFit.scaleDown,

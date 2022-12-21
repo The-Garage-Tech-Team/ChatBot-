@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 
 class ChatScreen extends StatelessWidget {
 
-  final chatController = Get.find<ChatContoller1>();
+  final chatController = Get.put(ChatContoller1());
   var userUid = FirebaseAuth.instance.currentUser!.uid;
   final String selectedUserID;
 

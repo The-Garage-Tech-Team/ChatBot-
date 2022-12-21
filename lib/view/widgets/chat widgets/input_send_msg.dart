@@ -5,7 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class InputMsg extends StatelessWidget {
-  final chatController = Get.find<ChatContoller1>();
+  final chatController = Get.put(ChatContoller1());
   final messageEditingController = TextEditingController();
   final Color iconColor;
   final String selectedUserID;
