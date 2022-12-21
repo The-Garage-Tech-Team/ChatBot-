@@ -18,44 +18,43 @@ class DashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(' testing : ' + controller.selectedUserID);
+   
     return Scaffold(
-      body: Stack(
+      body: Row(
         children: [
+        SideBarWidget(),
 
-          Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SideBarWidget(),
-                AppBarWidget(),
-              ],
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding:  EdgeInsets.only(left: 33.0, top: 26, bottom: 26),
+              child: Text("Overview", style: TextStyle(fontFamily: "Mulish", fontSize: 24),),
             ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              ChatList(),
-              GetBuilder<DashboardController>(builder: (_) {
-                print(controller.isPressed);
-                return controller.isPressed
-                    ? AdminChatWidget(
+            AppBarWidget(),
+            Expanded(
+              child:
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  ChatList(),
+                  GetBuilder<DashboardController>(builder: (_) {
+                    return controller.isPressed
+                        ? AdminChatWidget(
                         status: chatController.status,
                         selectedUserID: controller.selectedUserID,
                         docID: controller.selectedUserID)
-                    : Container();
-              }),
+                        : Container();
+                  }),
+                  Get.width < 1000 ? Text(""):
+                  UserProfile(),
+                ],
+              ),
+            ),
+          ],
+        ),
 
-              // AdminChatWidget(
-              //     selectedUserID: controller.selectedUserID,
-              //     docID: controller.selectedUserID),
-              UserProfile(),
-            ],
-          ),
-        ],
-      ),
+      ],),
     );
   }
 }

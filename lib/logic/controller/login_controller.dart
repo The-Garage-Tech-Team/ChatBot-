@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import '../../model/user_model.dart';
+import '../../route/routes.dart';
 import '../../view/screens/dashborad_screen.dart';
 
 class LoginController extends GetxController {
@@ -37,7 +38,7 @@ class LoginController extends GetxController {
       authBox.write('auth', loggedIn);
       // This solves the error: navigation to screens must be after authentication (sign-in)
       if (email == 'admin@gmail.com' && password == 'admin123') {
-        Get.to(() => DashboardScreen());
+      Get.offNamed(Routes.dashboardScreen);
       } else {
         Get.to(() => BottomBarScreen());
       }
@@ -94,7 +95,8 @@ class LoginController extends GetxController {
 
       update();
       if (email == 'admin@gmail.com' && password == 'admin123') {
-        Get.to(() => DashboardScreen());
+        // Get.to(() => DashboardScreen());
+        Get.offNamed(Routes.dashboardScreen);
       } else {
         Get.to(() => BottomBarScreen());
       }

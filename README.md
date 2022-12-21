@@ -1,16 +1,14 @@
-# chatbot_template
+# ChatBot Support App
 
-A new Flutter project.
 
-## Getting Started
+- Flutter app template of chatbot support app to serve effective communication between one admin and multiple users.
 
-This project is a starting point for a Flutter application.
+## Main Features
 
-A few resources to get you started if this is your first Flutter project:
+1. Chat Screen for normal users.
+2. Dashboard for admin to communicate with all other users.
+3. Dashboard contains chat list of newest chats and oldest chat which depends on 'mark as close' button.
+4. Dashboard contains a statistic bar that shows the admin the number of opened, closed, on hold, and total chats.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Admin Dashboard and User Chat Screen
+![dashboard newst chat_macbookpro15_front](https://user-images.githubusercontent.com/120642539/208664507-babfcd36-596c-474c-9fd8-76179565fd3a.png)

@@ -16,8 +16,8 @@ class SideBarWidget extends StatelessWidget {
       builder: (_) => Stack(
         children: [
           Container(
-            height: MediaQuery.of(context).size.height,
-            width: 250,
+            height: Get.height,
+            width: Get.width * 0.15,
             color: Color.fromRGBO(54, 55, 64, 1),
             child: Column(
               children: [

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -11,7 +12,6 @@ class DashboardController extends GetxController {
   var selectedUserID = '';
   final db = FirebaseFirestore.instance;
   bool isPressed = false;
-
 
   var oldCounter = 0.obs;
   var newCounter = 0.obs;
@@ -55,6 +55,7 @@ class DashboardController extends GetxController {
   var isOpened = 0.obs;
   var isClose = 0.obs;
   var onHold = 0.obs;
+
 
   void checkStatus(status) {
     isOpened(0);

@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       ),
       // This will fix reload page only in the admin side (dashboard), need to fix it also in normal user side.
       initialRoute: FirebaseAuth.instance.currentUser != null ||
-              GetStorage().read<bool>('auth') == true
+              GetStorage().read<bool>('auth') == true 
           ? AppRoutes.dashboard
           : AppRoutes.login,
       // initialRoute: AppRoutes.login,

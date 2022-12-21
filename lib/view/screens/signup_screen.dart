@@ -25,7 +25,7 @@ class SignUpScreen extends StatelessWidget {
                     const SizedBox(height: 130),
                     const Text(
                       'Sign up',
-                      style: TextStyle(color: kGreyColor),
+                      style: TextStyle(color: kGreyColor2, fontSize: 27),
                     ),
                     const SizedBox(height: 30),
                     Padding(
@@ -155,7 +155,7 @@ class SignUpScreen extends StatelessWidget {
                                       return null;
                                     }
                                   },
-                                  child: const Text('Login'),
+                                  child: const Text('Sign Up'),
                                 ),
                               ),
                             ),
@@ -164,7 +164,7 @@ class SignUpScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 const Text(
-                                  'Dont have account ?',
+                                  'Don\'t have account ?',
                                   style: TextStyle(color: kGreyColor),
                                 ),
                                 TextButton(

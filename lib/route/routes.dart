@@ -1,7 +1,6 @@
 import 'package:chatbot_template/view/screens/login_screen.dart';
 import 'package:chatbot_template/view/screens/signup_screen.dart';
 import 'package:get/get.dart';
-
 import '../logic/binding/dashborard_binding.dart';
 import '../logic/binding/login_bindings.dart';
 import '../view/screens/dashborad_screen.dart';
