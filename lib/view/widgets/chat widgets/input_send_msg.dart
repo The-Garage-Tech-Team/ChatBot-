@@ -50,15 +50,19 @@ class InputMsg extends StatelessWidget {
                     fit: BoxFit.scaleDown,
                   ),
                   onPressed: () {
-                    if (chatController.currentUserID == selectedUserID) {
-                      chatController
-                          .storeMessageUser(messageEditingController.text);
+                    if (messageEditingController.text != '') {
+                      if (chatController.currentUserID == selectedUserID) {
+                        chatController
+                            .storeMessageUser(messageEditingController.text);
+                      } else {
+                        chatController.storeMessageAdmin(
+                            selectedUserID, messageEditingController.text);
+                      }
+                      messageEditingController.clear();
+                      print('sending msg to Firestore Database ..');
                     } else {
-                      chatController.storeMessageAdmin(
-                          selectedUserID, messageEditingController.text);
+                      print('not sending empty msg!!');
                     }
-                    messageEditingController.clear();
-                    print('sending msg to Firestore Database ..');
                   },
                 ))),
       ),
