@@ -103,11 +103,11 @@ class LoginScreen extends StatelessWidget {
                         key: _formKey,
                         child: Container(
                           constraints: const BoxConstraints(
-                            minHeight: 52,
+
                             minWidth: 150 * 2,
                           ),
                           width: 40.w,
-                          height: 35.h,
+                         
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
