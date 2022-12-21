@@ -14,13 +14,13 @@ class AdminChatWidget extends StatelessWidget {
   final chatController = Get.put(ChatContoller1());
   final String selectedUserID;
   //var userUid = FirebaseAuth.instance.currentUser!.uid;
-  
+
   AdminChatWidget(
       {super.key,
       required this.docID,
       required this.selectedUserID,
       required this.status});
-  final bool status;
+   String status;
 
   @override
   Widget build(BuildContext context) {
@@ -71,28 +71,30 @@ class AdminChatWidget extends StatelessWidget {
                           );
                         }
                         return ListView.builder(
-                          reverse: true,
-                          physics: const BouncingScrollPhysics(),
-                          itemCount: snapshot.data!.docs.length,
-                          itemBuilder: (context, index) {
-                            final msgWidget = chatController.isCurrentUser(
-                                    snapshot.data!.docs[index]['senderID'])
-                                ? UserResponse(
-                                    text: snapshot.data!.docs[index]['message'],
-                                    timeSent:
-                                        chatController.timestampToDesiredFormat(
-                                            snapshot.data!.docs[index]['time']),
-                                    widgetColor:
-                                        const Color.fromRGBO(54, 55, 64, 1),
-                                  )
-                                : AdminResponse(
-                                    text: snapshot.data!.docs[index]['message'],
-                                    timeSent:
-                                        chatController.timestampToDesiredFormat(
-                                            snapshot.data!.docs[index]['time']),
-                                  );
-                            chatMessages.add(msgWidget);
-                            return msgWidget;
+                        reverse: true,
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: snapshot.data!.docs.length,
+                        itemBuilder: (context, index) {
+                         
+                          status = snapshot.data!.docs[index]['senderID'];
+                          final msgWidget = chatController.isCurrentUser(
+                                  snapshot.data!.docs[index]['senderID'])
+                              ? UserResponse(
+                                  text: snapshot.data!.docs[index]['message'],
+                                  timeSent:
+                                      chatController.timestampToDesiredFormat(
+                                          snapshot.data!.docs[index]['time']),
+                                  widgetColor:
+                                      const Color.fromRGBO(54, 55, 64, 1),
+                                )
+                              : AdminResponse(
+                                  text: snapshot.data!.docs[index]['message'],
+                                  timeSent:
+                                      chatController.timestampToDesiredFormat(
+                                          snapshot.data!.docs[index]['time']),
+                                );
+                          chatMessages.add(msgWidget);
+                          return msgWidget;
                           },
                         );
                       }

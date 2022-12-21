@@ -1,3 +1,5 @@
+import 'package:chatbot_template/logic/controller/chat_controller_1.dart';
+import 'package:chatbot_template/logic/controller/dashboard_controller.dart';
 import 'package:chatbot_template/view/widgets/admin_widget/newest.dart';
 import 'package:chatbot_template/view/widgets/admin_widget/oldest.dart';
 import 'package:flutter/material.dart';
@@ -7,8 +9,9 @@ import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ChatList extends StatelessWidget {
-  const ChatList({Key? key}) : super(key: key);
-
+  
+   ChatList({Key? key}) : super(key: key);
+  final chatController = Get.put(ChatContoller1());
   @override
   Widget build(BuildContext context) => DefaultTabController(
         length: 2,
@@ -40,18 +43,24 @@ class ChatList extends StatelessWidget {
                     tabs: [
                       Tab(text: 'Newest'),
                       Tab(text: 'Oldest'),
+                  
                     ],
                   ),
                 ),
               ),
-              body: TabBarView(
-                children: [
-                  NewestChat(status:false),
-                  OldestChat(status:true),
-                ],
+                   body:GetBuilder<DashboardController>(builder: (_) {
+               
+                return TabBarView(
+                    children: [
+                      
+                      NewestChat(status:chatController.status),
+                      OldestChat(status:chatController.status),
+                    ],
+                  );
+              }),
+                  
+                ),
               ),
-            ),
-          ),
-        ),
-      );
+              ),
+        );
 }

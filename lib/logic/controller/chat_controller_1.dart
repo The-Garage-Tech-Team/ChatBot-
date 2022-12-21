@@ -13,20 +13,15 @@ class ChatContoller1 extends GetxController {
   final adminUid = 'vJI1WLlXPucQmbvcpl5zfsAa5W33';
   var id = '';
 
-  bool status = false;
-   getStatus(selectedUserID) async {
+  String status = '';
+  getStatus(selectedUserID) async {
     var getStatusData =
         await firestore.collection('newChatbot').doc(selectedUserID).get();
     var data = getStatusData.data()!['status'];
-    print("___________________________________");
-    print(data.toString());
-    print("___________________________________");
-    return data.toString();
-  }
-
-  void updateStatus() {
-    status = true;
+    status = getStatusData.data()!['status'];
+   
     update();
+    return status.toString();
   }
 
   void updateDocID(docId) {
