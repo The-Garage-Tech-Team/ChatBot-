@@ -223,7 +223,7 @@ class LoginScreen extends StatelessWidget {
                                     borderSide: const BorderSide(
                                       color: kGreyColor,
                                       width: 2,
-//>>>>>>> hawra
+//  >>>>>>> hawra
                                     ),
                                   ),
                                 ),
