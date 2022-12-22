@@ -11,4 +11,4 @@
 4. Dashboard contains a statistic bar that shows the admin the number of opened, closed, on hold, and total chats.
 
 ## Admin Dashboard and User Chat Screen
-![dashboard newst chat_macbookpro15_front](https://user-images.githubusercontent.com/120642539/208664507-babfcd36-596c-474c-9fd8-76179565fd3a.png)
+![dashboard mockup](https://user-images.githubusercontent.com/120642539/209104311-aa6e53e0-1bbb-4be9-b4ca-5ca75fd6a03f.png)
