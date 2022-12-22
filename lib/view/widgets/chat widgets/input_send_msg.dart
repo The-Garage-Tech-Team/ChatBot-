@@ -43,14 +43,15 @@ class InputMsg extends StatelessWidget {
                 border: InputBorder.none,
                 suffixIcon: IconButton(
                   icon: SvgPicture.asset(
-                    'assets/images/SendMsg.svg',
+                    'assets/icons/SendMsg.svg',
                     color: iconColor,
                     width: 18,
                     height: 18,
                     fit: BoxFit.scaleDown,
                   ),
                   onPressed: () {
-                    if (messageEditingController.text != '') {
+                    // if the string contains only white spaces, the message will be considered empty and won't be sent.
+                    if (messageEditingController.text.trim() != '') {
                       if (chatController.currentUserID == selectedUserID) {
                         chatController
                             .storeMessageUser(messageEditingController.text);
@@ -59,9 +60,9 @@ class InputMsg extends StatelessWidget {
                             selectedUserID, messageEditingController.text);
                       }
                       messageEditingController.clear();
-                      print('sending msg to Firestore Database ..');
+                      print('sending message to Firestore Database ..');
                     } else {
-                      print('not sending empty msg!!');
+                      print('not sending empty message!!');
                     }
                   },
                 ))),
