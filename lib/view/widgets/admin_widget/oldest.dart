@@ -1,14 +1,14 @@
+import 'package:chatbot_template/logic/controller/chat_controller_1.dart';
 import 'package:chatbot_template/logic/controller/dashboard_controller.dart';
 import 'package:chatbot_template/model/extensions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../view/widgets/chat widgets/admin_chat_widget.dart';
 
 class OldestChat extends StatelessWidget {
   OldestChat({Key? key, required this.status}) : super(key: key);
-
-  final bool status;
+  final chatController = Get.put(ChatContoller1());
+  final String status;
   String date = DateTime.now().toString().changeDateFormat();
   final controller = Get.find<DashboardController>();
   final db = FirebaseFirestore.instance;
@@ -45,6 +45,8 @@ class OldestChat extends StatelessWidget {
                             onTap: () {
                               controller.selectedUserID =
                                   snapshot.data!.docs[index].id;
+                              chatController
+                                  .getStatus(snapshot.data!.docs[index].id);
                               // print(snapshot.data!.docs[index].id);
                               // db
                               //     .collection('newChatbot')
@@ -104,23 +106,22 @@ class OldestChat extends StatelessWidget {
                                                             .data()[
                                                         'last_messages_time'])),
                                             leading: const Icon(Icons.face),
-                                            trailing: Text("0"),
-                                            // Badge(
-                                            //   elevation: 0,
-                                            //   shape: BadgeShape.circle,
-                                            //   padding: EdgeInsets.all(7),
-                                            //   badgeContent: const Text(
-                                            //     "0",
-                                            //     style: TextStyle(color: Colors.white),
-                                            //   ),
-                                            // ),
+                                            trailing: Text(""),
                                           ),
-                                        ),
+                                        // Badge(
+                                        //   elevation: 0,
+                                        //   shape: BadgeShape.circle,
+                                        //   padding: EdgeInsets.all(7),
+                                        //   badgeContent: const Text(
+                                        //     "0",
+                                        //     style: TextStyle(color: Colors.white),
+                                        //   ),
+                                        // ),
                                       ),
-                                    )
-                                  ],
-                                )),
-                          ),
+                                    ),
+                                  ),
+                            ]  ),
+                            )),
                         ],
                       );
                     } else {

@@ -1,15 +1,13 @@
-import 'package:chatbot_template/constants/constants.dart';
+import 'package:chatbot_template/uitls/constants.dart';
 import 'package:chatbot_template/logic/controller/login_controller.dart';
 import 'package:chatbot_template/route/routes.dart';
-import 'package:chatbot_template/view/screens/bottom_bar_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-
-import '../../logic/controller/dashboard_controller.dart';
-import 'dashborad_screen.dart';
+import '../../uitls/my_string.dart';
 
 class LoginScreen extends StatelessWidget {
+  
   final _formKey = GlobalKey<FormState>();
   final _userController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -120,9 +118,7 @@ class LoginScreen extends StatelessWidget {
                               TextFormField(
                                 controller: _userController,
                                 validator: (value) {
-                                  bool _isEmailValid = RegExp(
-                                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                      .hasMatch(value!);
+                                  bool _isEmailValid = RegExp(validationEmail).hasMatch(value!);
                                   if (!_isEmailValid) {
                                     return 'Invalid email.';
                                   }
@@ -139,91 +135,11 @@ class LoginScreen extends StatelessWidget {
                                       width: 2,
                                     ),
                                   ),
-// <<<<<<< HEAD
-//                                 ),
-//                                 focusedBorder: OutlineInputBorder(
-//                                   borderRadius: BorderRadius.circular(10),
-//                                   borderSide: const BorderSide(
-//                                     color: kGreyColor,
-//                                     width: 2,
-//                                   ),
-//                                 ),
-//                               ),
-//                             ),
-//                             const SizedBox(height: 10),
-//                             Row(
-//                               children: [
-//                                 Checkbox(
-//                                   value: true,
-//                                   onChanged: (value) {},
-//                                   activeColor: kGreyColor,
-//                                 ),
-//                                 const SizedBox(width: 5),
-//                                 const Text(
-//                                   'Remember me',
-//                                   style: TextStyle(
-//                                     color: kGreyColor,
-//                                     fontSize: 12,
-//                                   ),
-//                                 ),
-//                                 const SizedBox(width: 15),
-//                                 const Text(
-//                                   'Don\'t remember the password ?',
-//                                   style: TextStyle(
-//                                     decoration: TextDecoration.underline,
-//                                     color: kGreyColor,
-//                                     fontSize: 10,
-//                                   ),
-//                                 ),
-//                               ],
-//                             ),
-//                             const SizedBox(height: 30),
-//                             Center(
-//                               child: SizedBox(
-//                                 width: MediaQuery.of(context).size.width / 3,
-//                                 height: MediaQuery.of(context).size.width / 8.5,
-//                                 child: ElevatedButton(
-//                                   style: ElevatedButton.styleFrom(
-//                                       backgroundColor: kGreyColor2),
-//                                   onPressed: () {
-//                                     if (_formKey.currentState!.validate()) {
-//                                       controller.signIn(
-//                                         _userController.text.trim(),
-//                                         _passwordController.text.trim(),
-//                                       );
-//                                     } else {
-//                                       return null;
-//                                     }
-//                                   },
-//                                   child: const Text('Login'),
-//                                 ),
-//                               ),
-//                             ),
-//                             const SizedBox(height: 10),
-//                             Row(
-//                               mainAxisAlignment: MainAxisAlignment.center,
-//                               children: [
-//                                 const Text(
-//                                   'Don\'t have account?',
-//                                   style: TextStyle(color: kGreyColor),
-//                                 ),
-//                                 TextButton(
-//                                   onPressed: () {
-//                                     // Get.to(DashboardScreen());
-//                                     Get.toNamed(Routes.signUpScreen);
-//                                   },
-//                                   child: const Text(
-//                                     'Sign Up',
-//                                     style: TextStyle(
-//                                       color: kGreyColor2,
-//                                       decoration: TextDecoration.underline,
-// =======
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: const BorderSide(
                                       color: kGreyColor,
                                       width: 2,
-//  >>>>>>> hawra
                                     ),
                                   ),
                                 ),
@@ -298,7 +214,6 @@ class LoginScreen extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              // const SizedBox(height: 30),
                               Center(
                                 child: Container(
                                   constraints: const BoxConstraints(
@@ -328,7 +243,6 @@ class LoginScreen extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              // const SizedBox(height: 10),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -338,7 +252,6 @@ class LoginScreen extends StatelessWidget {
                                   ),
                                   TextButton(
                                     onPressed: () {
-                                      // Get.to(DashboardScreen());
                                       Get.toNamed(Routes.signUpScreen);
                                     },
                                     child: const Text(

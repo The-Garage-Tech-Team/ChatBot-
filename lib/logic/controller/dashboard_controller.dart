@@ -32,15 +32,6 @@ class DashboardController extends GetxController {
       return Colors.black;
   }
 
-  // Future<String> getUserName(String userId) async {
-  //   String userName = '';
-  //   var users = db.collection('users').doc(userId);
-
-  //   await users.get().then((value) => {userName = value['name'].toString()});
-
-  //   return userName;
-  // }
-
   String timestampToDesiredFormat(msgTime) {
     if (msgTime == null) {
       String formattedTime = DateFormat.jm().format(DateTime.now());
@@ -55,7 +46,6 @@ class DashboardController extends GetxController {
   var isOpened = 0.obs;
   var isClose = 0.obs;
   var onHold = 0.obs;
-
 
   void checkStatus(status) {
     isOpened(0);
@@ -78,14 +68,6 @@ class DashboardController extends GetxController {
         print('isClose' + isClose.toString());
       }
     }
-  }
-
-  void test(snapshot, index) {
-    //  db
-    //     .collection('users')
-    //     .doc()
-// chats
-// senderID
   }
 
   void isPressedFun() {

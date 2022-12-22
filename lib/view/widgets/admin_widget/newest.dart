@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 class NewestChat extends StatelessWidget {
   final chatController = Get.put(ChatContoller1());
   NewestChat({Key? key, required this.status}) : super(key: key);
-  final bool status;
+  final String status;
 
   String date = DateTime.now().toString().changeDateFormat();
   final controller = Get.find<DashboardController>();
@@ -48,7 +48,8 @@ class NewestChat extends StatelessWidget {
                             onTap: () {
                               controller.selectedUserID =
                                   snapshot.data!.docs[index].id;
-
+                              chatController
+                                  .getStatus(snapshot.data!.docs[index].id);
                               // controller.test(snapshot, index);
                               db
                                   .collection('newChatbot')
@@ -115,12 +116,13 @@ class NewestChat extends StatelessWidget {
                                             //   ),
                                             // ),
                                           ),
-                                        ),
                                       ),
-                                    )
-                                  ],
-                                )),
-                          ),
+                                    ),
+                                  ),
+                             ],
+                                ),
+
+                            )),
                         ],
                       );
                     } else {

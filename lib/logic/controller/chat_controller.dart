@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:intl/intl.dart';
 
 class ChatContoller extends GetxController {
@@ -67,57 +66,7 @@ class ChatContoller extends GetxController {
         }
       }
     }
-
-    // var snapshots = firestore.collection('chatbot').snapshots();
-    // var chatbotDoc = firestore.collection('chatbot').doc();
-    // await for (var snapshot in snapshots) {
-    //   if (snapshot.docs.isEmpty) {
-    //     chatbotDoc.set({'id': chatbotDoc.id, 'userID': currentUserID});
-    //     chatbotDoc.collection('messages').add({
-    //       'text': message,
-    //       'sender':
-    //           currentUserID, //maybe the issue from here UserUID is needed.
-    //       'receiver': adminUid,
-    //       'time': FieldValue.serverTimestamp(),
-    //     });
-    //   } else {
-    //     for (var userId in snapshot.docs) {
-    //       // duplicated msgs
-    //       if (userId.data()['userID'] == currentUserID) {
-    //         firestore
-    //             .collection('chatbot')
-    //             .doc(userId.data()['id'])
-    //             .collection('messages')
-    //             .add({
-    //           'text': message,
-    //           'sender':
-    //               currentUserID, //maybe the issue from here UserUID is needed.
-    //           'receiver': adminUid,
-    //           'time': FieldValue.serverTimestamp(),
-    //         });
-    //       } else {
-    //         chatbotDoc.set({'id': chatbotDoc.id, 'userID': currentUserID});
-    //         chatbotDoc.collection('messages').add({
-    //           'text': message,
-    //           'sender':
-    //               currentUserID, //maybe the issue from here UserUID is needed.
-    //           'receiver': adminUid,
-    //           'time': FieldValue.serverTimestamp(),
-    //         });
-    //       }
-    //       print("else: ${userId.data()['userID']}");
-    //     }
-    //   }
-    // }
   }
-
-  // void getChatID(String currentUserID) async {
-  //   final snapshot = await firestore.collection('chatbot3').get().then((s) {
-  //     if (s.docs.first['userID'] == currentUserID) {
-  //       chatID.value = s.docs.first['id'];
-  //     }
-  //   });
-  // }
 
   //check if it's the current user returns true
   bool isCurrentUser(msgSender) {
@@ -126,6 +75,7 @@ class ChatContoller extends GetxController {
     }
     return false;
   }
+
   // Time converter
   String timestampToDesiredFormat(msgTime) {
     if (msgTime == null) {

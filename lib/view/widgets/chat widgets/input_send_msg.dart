@@ -1,4 +1,4 @@
-import 'package:chatbot_template/constants/constants.dart';
+import 'package:chatbot_template/uitls/constants.dart';
 import 'package:chatbot_template/logic/controller/chat_controller_1.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
