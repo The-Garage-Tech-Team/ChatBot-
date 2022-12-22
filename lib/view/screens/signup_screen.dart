@@ -10,9 +10,9 @@ class SignUpScreen extends StatelessWidget {
   final _passwordController = TextEditingController();
 
   SignUpScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
+
     return GetBuilder<LoginController>(
         init: LoginController(),
         builder: (controller) {

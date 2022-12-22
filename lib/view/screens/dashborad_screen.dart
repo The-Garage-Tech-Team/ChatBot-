@@ -7,18 +7,19 @@ import 'package:chatbot_template/view/widgets/admin_widget/user-profile.dart';
 import 'package:chatbot_template/view/widgets/chat%20widgets/admin_chat_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 
 class DashboardScreen extends StatelessWidget {
-  final chatController = Get.put(ChatContoller1());
+
   DashboardScreen({Key? key}) : super(key: key);
 
+  final chatController = Get.put(ChatContoller1());
   final controller = Get.find<DashboardController>();
 
   @override
   Widget build(BuildContext context) {
-   
+
     return Scaffold(
       body: Row(
         children: [
@@ -33,28 +34,31 @@ class DashboardScreen extends StatelessWidget {
             ),
             AppBarWidget(),
             Expanded(
-              child:
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  ChatList(),
-                  GetBuilder<DashboardController>(builder: (_) {
-                    return controller.isPressed
-                        ? AdminChatWidget(
-                        status: chatController.status,
-                        selectedUserID: controller.selectedUserID,
-                        docID: controller.selectedUserID)
-                        : Container();
-                  }),
-                  Get.width < 1000 ? Text(""):
-                  UserProfile(),
-                ],
-              ),
+              child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                ChatList(),
+                GetBuilder<DashboardController>(builder: (_) {
+                  return controller.isPressed
+                      ? Row(
+                          children: [
+                            AdminChatWidget(
+                            status: chatController.status,
+                            selectedUserID: controller.selectedUserID,
+                            docID: controller.selectedUserID),
+                            Get.width < 1500 ? Text(""):
+                            UserProfile(),
+                          ],
+                        )
+                      : Container();
+                }),
+              ],
+                ),
             ),
           ],
         ),
-
-      ],),
+      ],
+      ),
     );
   }
 }

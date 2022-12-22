@@ -24,86 +24,80 @@ class AdminChatWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding:  EdgeInsets.only(right: 20.0),
-      child: Container(
-        color: Colors.white,
-        width: Get.width * 0.35,
-        height: Get.height * 0.75,
-        constraints: const BoxConstraints(
-          maxHeight: 1200,
-          maxWidth: 900,
-        ),
-        child: Material(
-          color: Colors.white,
-          child: Column(children: [
-            Container(
-              alignment: Alignment.centerRight,
+    return Container(
+      color: Colors.white,
+      width: Get.width * 0.35,
+      height: Get.height * 0.75,
+      margin: EdgeInsets.only(right: 20, bottom: 15),
+      child: Column(children: [
+        Container(
+          decoration: BoxDecoration(
               color: const Color.fromRGBO(54, 55, 64, 1),
-              // height: 40,
-              child:  MarkClosedButton(selectedUserID: selectedUserID),
-            ),
-            Expanded(
-                child: StreamBuilder<QuerySnapshot>(
-                    stream: chatController.getMessageByStream(docID),
-                    builder: (context, snapshot) {
-                      List<Widget> chatMessages = [];
-                      if (!snapshot.hasData) {
-                        return Center(
-                            child: SizedBox(
-                          //height: 15.0,
-                          //width: 15.0,
-                          child: Transform.scale(
-                            scale: 2,
-                            child: const CircularProgressIndicator(
-                              strokeWidth: 2,
-                              valueColor:
-                                  AlwaysStoppedAnimation<Color>(Colors.white),
-                            ),
-                          ),
-                        ));
-                      } else if (snapshot.hasData) {
-                        if (snapshot.data!.docs.length < 1) {
-                          return Container(
-                            decoration: BoxDecoration(color: Colors.white),
-                            // width:  1200,
-                            //height: 980,
-                          );
-                        }
-                        return ListView.builder(
-                          reverse: true,
-                          physics: const BouncingScrollPhysics(),
-                          itemCount: snapshot.data!.docs.length,
-                          itemBuilder: (context, index) {
-                            final msgWidget = chatController.isCurrentUser(
-                                    snapshot.data!.docs[index]['senderID'])
-                                ? UserResponse(
-                                    text: snapshot.data!.docs[index]['message'],
-                                    timeSent:
-                                        chatController.timestampToDesiredFormat(
-                                            snapshot.data!.docs[index]['time']),
-                                    widgetColor:
-                                        const Color.fromRGBO(54, 55, 64, 1),
-                                  )
-                                : AdminResponse(
-                                    text: snapshot.data!.docs[index]['message'],
-                                    timeSent:
-                                        chatController.timestampToDesiredFormat(
-                                            snapshot.data!.docs[index]['time']),
-                                  );
-                            chatMessages.add(msgWidget);
-                            return msgWidget;
-                          },
-                        );
-                      }
-                      return Container();
-                    })),
-            InputMsg(
-              selectedUserID: selectedUserID,
-            )
-          ]),
+              borderRadius: BorderRadius.only(topRight: Radius.circular(3), bottomRight:Radius.circular(3) )
+          ),
+          alignment: Alignment.centerRight,
+          // height: 40,
+          child:  MarkClosedButton(selectedUserID: selectedUserID),
         ),
-      ),
+        Expanded(
+            child: StreamBuilder<QuerySnapshot>(
+                stream: chatController.getMessageByStream(docID),
+                builder: (context, snapshot) {
+                  List<Widget> chatMessages = [];
+                  if (!snapshot.hasData) {
+                    return Center(
+                        child: SizedBox(
+                      //height: 15.0,
+                      //width: 15.0,
+                          child: Transform.scale(
+                        scale: 2,
+                            child: const CircularProgressIndicator(
+                          strokeWidth: 2,
+                          valueColor:
+                              AlwaysStoppedAnimation<Color>(Colors.white),
+                        ),
+                      ),
+                    ));
+                  } else if (snapshot.hasData) {
+                    if (snapshot.data!.docs.length < 1) {
+                      return Container(
+                        decoration: BoxDecoration(color: Colors.white),
+                        // width:  1200,
+                        //height: 980,
+                      );
+                    }
+                    return ListView.builder(
+                      reverse: true,
+                      physics: const BouncingScrollPhysics(),
+                      itemCount: snapshot.data!.docs.length,
+                      itemBuilder: (context, index) {
+                        final msgWidget = chatController.isCurrentUser(
+                                snapshot.data!.docs[index]['senderID'])
+                            ? UserResponse(
+                                text: snapshot.data!.docs[index]['message'],
+                                timeSent:
+                                    chatController.timestampToDesiredFormat(
+                                        snapshot.data!.docs[index]['time']),
+                                widgetColor:
+                                    const Color.fromRGBO(54, 55, 64, 1),
+                              )
+                            : AdminResponse(
+                                text: snapshot.data!.docs[index]['message'],
+                                timeSent:
+                                    chatController.timestampToDesiredFormat(
+                                        snapshot.data!.docs[index]['time']),
+                              );
+                        chatMessages.add(msgWidget);
+                        return msgWidget;
+                      },
+                    );
+                  }
+                  return Container();
+                })),
+        InputMsg(
+          selectedUserID: selectedUserID,
+        )
+      ]),
     );
   }
 }
