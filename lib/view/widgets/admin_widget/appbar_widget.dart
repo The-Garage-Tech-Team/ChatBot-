@@ -1,4 +1,4 @@
-import 'package:chatbot_template/uitls/text_utils.dart';
+import 'package:chatbot_template/utils/text_utils.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

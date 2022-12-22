@@ -1,4 +1,4 @@
-import 'package:chatbot_template/uitls/constants.dart';
+import 'package:chatbot_template/utils/constants.dart';
 import 'package:chatbot_template/logic/controller/chat_controller.dart';
 import 'package:chatbot_template/logic/controller/login_controller.dart';
 import 'package:chatbot_template/view/screens/login_screen.dart';

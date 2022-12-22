@@ -1,10 +1,10 @@
-import 'package:chatbot_template/uitls/constants.dart';
+import 'package:chatbot_template/utils/constants.dart';
 import 'package:chatbot_template/logic/controller/login_controller.dart';
 import 'package:chatbot_template/route/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../uitls/my_string.dart';
+import '../../utils/my_string.dart';
 
 class LoginScreen extends StatelessWidget {
   
@@ -215,31 +215,34 @@ class LoginScreen extends StatelessWidget {
                                 ],
                               ),
                               Center(
-                                child: Container(
-                                  constraints: const BoxConstraints(
-                                    minHeight: 32,
-                                    minWidth: 118,
-                                  ),
-                                  width: 15.w,
-                                  height: 4.h,
-                                  child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      backgroundColor: kGreyColor2,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(bottom: 8.0),
+                                  child: Container(
+                                    constraints: const BoxConstraints(
+                                      minHeight: 32,
+                                      minWidth: 118,
                                     ),
-                                    onPressed: () {
-                                      if (_formKey.currentState!.validate()) {
-                                        controller.signIn(
-                                          _userController.text.trim(),
-                                          _passwordController.text.trim(),
-                                        );
-                                      } else {
-                                        return null;
-                                      }
-                                    },
-                                    child: const Text('Login'),
+                                    width: 15.w,
+                                    height: 4.h,
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(8),
+                                        ),
+                                        backgroundColor: kGreyColor2,
+                                      ),
+                                      onPressed: () {
+                                        if (_formKey.currentState!.validate()) {
+                                          controller.signIn(
+                                            _userController.text.trim(),
+                                            _passwordController.text.trim(),
+                                          );
+                                        } else {
+                                          return null;
+                                        }
+                                      },
+                                      child: const Text('Login'),
+                                    ),
                                   ),
                                 ),
                               ),

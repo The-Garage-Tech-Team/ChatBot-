@@ -1,4 +1,4 @@
-import 'package:chatbot_template/uitls/constants.dart';
+import 'package:chatbot_template/utils/constants.dart';
 import 'package:chatbot_template/logic/controller/chat_controller_1.dart';
 import 'package:chatbot_template/view/widgets/chat%20widgets/admin_response.dart';
 import 'package:chatbot_template/view/widgets/chat%20widgets/input_send_msg.dart';

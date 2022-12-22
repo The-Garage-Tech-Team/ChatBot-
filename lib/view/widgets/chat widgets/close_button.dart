@@ -8,14 +8,15 @@ class CloseButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: Get.width * 0.07,
+        width: 58,
+        height: 23,
         margin: EdgeInsets.only(right: 24, top: 9, bottom: 9, left: 290),
         decoration: BoxDecoration(
           border: Border.all(
             color: Colors.white,
-            width: 2,
+            width: 1,
           ),
-          borderRadius: BorderRadius.circular(6),
+          borderRadius: BorderRadius.circular(4),
         ),
         child: Padding(
           padding: const EdgeInsets.only(top: 4, bottom: 4),

@@ -1,9 +1,9 @@
-import 'package:chatbot_template/uitls/constants.dart';
+import 'package:chatbot_template/utils/constants.dart';
 import 'package:chatbot_template/logic/controller/login_controller.dart';
 import 'package:chatbot_template/route/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../uitls/my_string.dart';
+import '../../utils/my_string.dart';
 
 class SignUpScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();

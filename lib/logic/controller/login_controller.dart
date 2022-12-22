@@ -1,4 +1,4 @@
-import 'package:chatbot_template/uitls/constants.dart';
+import 'package:chatbot_template/utils/constants.dart';
 import 'package:chatbot_template/view/screens/bottom_bar_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
