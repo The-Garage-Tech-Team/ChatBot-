@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ResponsiveSizer(builder: (context, orientation, screenType) {
       return GetMaterialApp(
-        title: 'Flutter Demo',
+        title: 'ChatBot App',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.blue,
